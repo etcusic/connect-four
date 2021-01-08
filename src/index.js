@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// will need createStore && Provider for Redux
+
+// also for Redux once ready for it
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// let store = createStore(rootReducer, composeEnhancers())
+
 
 ReactDOM.render(
   <React.StrictMode>
