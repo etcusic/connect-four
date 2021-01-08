@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
 import LandingPage from './containers/LandingPage'
 import Game from './containers/Game'
@@ -7,16 +7,11 @@ import Scores from './containers/Scores'
 
 class App extends Component {
 
-  constructor() {
-    super();
-    // why this???
-  }
-
   render() {
     return (
       <Router>
       <NavBar />
-        <div className="container">
+        <div>
           <Switch>
             <Route exact path="/" component={ LandingPage } />
             <Route exact path="/game" component={ Game } />
