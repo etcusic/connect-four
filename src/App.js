@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './containers/Home';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import NavBar from './components/NavBar'
+import LandingPage from './containers/LandingPage'
+import Game from './containers/Game'
+import Scores from './containers/Scores'
 
 class App extends Component {
 
@@ -15,9 +18,9 @@ class App extends Component {
       <NavBar />
         <div className="container">
           <Switch>
-            <Route exact path="/" component={  } />
-            <Route exact path="/game" component={  } />
-            <Route exact path="/scores" component={  } />
+            <Route exact path="/" component={ LandingPage } />
+            <Route exact path="/game" component={ Game } />
+            <Route exact path="/scores" component={ Scores } />
 
             {/* if there is time => scope out scores by muppet id */}
             {/* <Route exact path="/scores/:id" render={  } /> */}
