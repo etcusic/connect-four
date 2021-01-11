@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Token from './Token'
 
 export class Cell extends Component {
   render() {
     return (
-      <div>
-        Dis will be a Cell
+      <div className="cell">
+        <Token />
       </div>
     )
   }
