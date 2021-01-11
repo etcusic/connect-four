@@ -35,7 +35,7 @@ export class GameBoard extends Component {
             let id = `token-button-${i}`
             buttons.push(
                 <td>
-                    <ButtonCell />
+                    <ButtonCell number={i}/>
                 </td>
             )
         }

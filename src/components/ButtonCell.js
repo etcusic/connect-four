@@ -5,7 +5,7 @@ export class ButtonCell extends Component {
   render() {
     return (
       <div className="button-cell">
-        <TokenButton />
+        <TokenButton number={this.props.number}/>
       </div>
     )
   }
