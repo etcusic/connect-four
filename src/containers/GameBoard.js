@@ -48,7 +48,7 @@ export class GameBoard extends Component {
 
     render() {
         return (
-            <div>
+            <div id="game-board">
                 <table id="game-board-table">
                     <tbody>
                         { this.generateRows() }

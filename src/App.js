@@ -22,10 +22,6 @@ class App extends Component {
 
           </Switch>
 
-          <div>
-            <Game />
-          </div>
-
         </div>
       </Router>
     );
