@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export class TokenButton extends Component {
   render() {
     return (
-      <div>
-        Dis will be a Token TokenButton
+      <div className="token-button">
+        
       </div>
     )
   }
