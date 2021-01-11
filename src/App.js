@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import LandingPage from './containers/LandingPage'
 import Game from './containers/Game'
 import Scores from './containers/Scores'
+import GameBoard from './containers/GameBoard'
 
 class App extends Component {
 
@@ -21,6 +22,11 @@ class App extends Component {
             {/* <Route exact path="/scores/:id" render={  } /> */}
 
           </Switch>
+
+          <div>
+            <GameBoard />
+          </div>
+
         </div>
       </Router>
     );
