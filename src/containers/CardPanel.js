@@ -5,7 +5,10 @@ export class CardPanel extends Component {
 
     generateCards = () => {
         // take in an array of 7 cards as argument and render each to the panel vertically
-        let practice = [<Card />, <Card />, <Card />, <Card />, <Card />, <Card />, <Card />]
+        let practice = []
+        for (let i = 1; i < 8; i++){
+            practice.push(<Card card={"This is a card, yo"} />)
+        }
         return practice.map(card => card)
     }
 

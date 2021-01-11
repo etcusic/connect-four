@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 
-export class Card extends Component {
-  render() {
+const Card = ({ card }) => {
+// export class Card extends Component {
+//   render() {
     return (
       <div className="card">
-        This is a card
+        { card }
       </div>
     )
-  }
+//   }
 }
 
 export default Card
