@@ -7,10 +7,9 @@ export class GameBoard extends Component {
     generateCells = () => {
         let cells = []
         for (let i = 1; i <= 7; i++){
-            let column = "col-" + i.toString()
+            let column = `col-${i}`
             cells.push(
                 <td className={column}>
-                    {console.log(i)}
                     <Cell />
                 </td>
             )
@@ -23,12 +22,28 @@ export class GameBoard extends Component {
         for (let i = 1; i <= 6; i++){
             rows.push(
                 <tr className="row">
-                    {console.log(i)}
                     { this.generateCells() }
                 </tr>
             )
         }
         return rows.map(row => row)
+    }
+
+    generateButtons = () => {
+        let buttons = []
+        for (let i = 1; i <= 7; i++){
+            let id = `token-button-${i}`
+            buttons.push(
+                <td>
+                    <ButtonCell />
+                </td>
+            )
+        }
+        return (
+            <tr id="button-row">
+                { buttons.map(button => button) }
+            </tr>
+        )
     }
 
     render() {
@@ -37,15 +52,7 @@ export class GameBoard extends Component {
                 <table id="game-board-table">
                     <tbody>
                         { this.generateRows() }
-                        <tr id="button-row">
-                            <td id="token-button-1"><ButtonCell /></td>
-                            <td id="token-button-2"><ButtonCell /></td>
-                            <td id="token-button-3"><ButtonCell /></td>
-                            <td id="token-button-4"><ButtonCell /></td>
-                            <td id="token-button-5"><ButtonCell /></td>
-                            <td id="token-button-6"><ButtonCell /></td>
-                            <td id="token-button-7"><ButtonCell /></td>
-                        </tr>
+                        { this.generateButtons() }
                     </tbody>
                 </table>
             </div>
