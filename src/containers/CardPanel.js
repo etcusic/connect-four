@@ -12,7 +12,9 @@ export class CardPanel extends Component {
     render() {
         return (
         <div id="card-panel">
-            {this.generateCards()}
+            <div id="cards-container">
+                {this.generateCards()}
+            </div>
         </div>
         )
     }

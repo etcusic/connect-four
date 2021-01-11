@@ -17,16 +17,16 @@ code {
   float: right;
 }
 
-#game-board-table {
+#game-board {
   float: left;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 table {
   border-collapse: collapse;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .row {
@@ -39,7 +39,6 @@ table {
   border-left: 3px solid black;
   border-right: 3px solid black;
   position: relative;
-
   background-color: grey;
 }
 
@@ -54,7 +53,7 @@ table {
   border-radius: 50%;
 }
 
-.button-cell{
+.button-cell {
   width: 100px;
   height: 100px;
   position: relative;
@@ -79,4 +78,20 @@ table {
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: bold;
+}
+
+.card {
+  width: 220px;
+  height: 100px;
+  background-color: darkgreen;
+  color: whitesmoke;
+  top: 5px;
+  border: 5px solid black;
+  font-weight: bold;
+  font-size: 35px;
+  margin-top: 5px;
+}
+
+#cards-container {
+  margin-right: 20px;
 }
