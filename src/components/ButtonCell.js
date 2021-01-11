@@ -4,7 +4,7 @@ import TokenButton from './TokenButton'
 export class ButtonCell extends Component {
   render() {
     return (
-      <div className="cell">
+      <div className="button-cell">
         <TokenButton />
       </div>
     )

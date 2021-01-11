@@ -13,10 +13,19 @@ code {
     monospace;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+.row {
+  border: 3px solid black;
+}
+
 .cell {
   width: 100px;
   height: 100px;
-  border: 2px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
   position: relative;
 }
 
@@ -27,7 +36,7 @@ code {
   transform: translate(-50%, -50%);
   width: 90px;
   height: 90px;
-  background-color: darkgreen;
+  background-color: grey;
   border-radius: 50%;
 }
 
