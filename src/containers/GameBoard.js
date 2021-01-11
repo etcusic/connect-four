@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Matrix from './components/Matrix'
+import Matrix from '../components/Matrix'
 
 export class GameBoard extends Component {
   render() {
