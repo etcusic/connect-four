@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 
-export class TokenButton extends Component {
-  render() {
+const TokenButton = ({ number }) => {
     return (
       <div className="token-button">
-        <div className="button-number">{this.props.number}</div>
+        <div className="button-number">{ number }</div>
       </div>
     )
-  }
 }
 
 export default TokenButton
