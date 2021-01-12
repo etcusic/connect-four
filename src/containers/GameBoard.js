@@ -1,9 +1,25 @@
 import React, { Component } from 'react'
 import Cell from '../components/Cell'
 import ButtonCell from '../components/ButtonCell'
+import Token from '../components/Token'
 
 export class GameBoard extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+          // is there a better way to do this???
+          tokensArray: [
+            [<Token />, <Token />, <Token />, <Token />, <Token />, <Token />, <Token />],
+            [<Token />, <Token />, <Token />, <Token />, <Token />, <Token />, <Token />],
+            [<Token />, <Token />, <Token />, <Token />, <Token />, <Token />, <Token />],
+            [<Token />, <Token />, <Token />, <Token />, <Token />, <Token />, <Token />],
+            [<Token />, <Token />, <Token />, <Token />, <Token />, <Token />, <Token />],
+            [<Token />, <Token />, <Token />, <Token />, <Token />, <Token />, <Token />]
+          ]
+        }
+      }
+    
     generateCells = () => {
         let cells = []
         for (let i = 1; i <= 7; i++){
