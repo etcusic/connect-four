@@ -17,7 +17,7 @@ export class Game extends Component {
     for (let i = 0; i < 6; i++) {
       let rowArray = []
       for (let j = 0; j < 7; j++) {
-        rowArray.push(<Token coordinates={[j, i]} color={"F5F5F5"}/>)
+        rowArray.push(<Token coordinates={[j, i]} color={"whitesmoke"}/>)
       }
       nestedArray.push(rowArray)  
     }
