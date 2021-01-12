@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Cell from '../components/Cell'
-import ButtonCell from '../components/ButtonCell'
+import TokenButton from '../components/TokenButton'
 
 export class GameBoard extends Component {
     
@@ -9,7 +8,9 @@ export class GameBoard extends Component {
         for (let i = 0; i < 7; i++){
             cells.push(
                 <td className={`col-${i}`}>
-                    <Cell token={this.props.tokens[rowIndex][i]}/>
+                    <div className="cell">
+                        { this.props.tokens[rowIndex][i] }
+                    </div>
                 </td>
             )
         }
@@ -34,7 +35,9 @@ export class GameBoard extends Component {
             let id = `token-button-${i}`
             buttons.push(
                 <td>
-                    <ButtonCell number={i}/>
+                    <div className="button-cell">
+                        <TokenButton number={i}/>
+                    </div>
                 </td>
             )
         }
