@@ -2,50 +2,20 @@ import React, { Component } from 'react'
 import TokenButton from '../components/TokenButton'
 
 export class GameBoard extends Component {
-    
-    generateCells = (rowIndex) => {
-        let cells = []
-        for (let i = 0; i < 7; i++){
-            cells.push(
-                <td className={`col-${i}`}>
-                    <div className="cell">
-                        { this.props.tokens[rowIndex][i] }
-                    </div>
-                </td>
-            )
-        }
+
+    buttonsArray = [
+        <TokenButton number={1}/>,
+        <TokenButton number={2}/>,
+        <TokenButton number={3}/>,
+        <TokenButton number={4}/>,
+        <TokenButton number={5}/>,
+        <TokenButton number={6}/>,
+        <TokenButton number={7}/>
+    ]
+
+    generateRow = (tokenArray) => {
+        let cells = tokenArray.map(token => <td className="cell">{ token }</td>)
         return cells.map(cell => cell)
-    }
-
-    generateRows = () => {
-        let rows = []
-        for (let i = 0; i < 6; i++){
-            rows.push(
-                <tr className="row">
-                    { this.generateCells(i) }
-                </tr>
-            )
-        }
-        return rows.map(row => row)
-    }
-
-    generateButtons = () => {
-        let buttons = []
-        for (let i = 1; i <= 7; i++){
-            let id = `token-button-${i}`
-            buttons.push(
-                <td>
-                    <div className="button-cell">
-                        <TokenButton number={i}/>
-                    </div>
-                </td>
-            )
-        }
-        return (
-            <tr id="button-row">
-                { buttons.map(button => button) }
-            </tr>
-        )
     }
 
     render() {
@@ -53,8 +23,13 @@ export class GameBoard extends Component {
             <div id="game-board">
                 <table id="game-board-table">
                     <tbody>
-                        { this.generateRows() }
-                        { this.generateButtons() }
+                        <tr className="row">{ this.generateRow(this.props.tokens[5]) }</tr>
+                        <tr className="row">{ this.generateRow(this.props.tokens[4]) }</tr>
+                        <tr className="row">{ this.generateRow(this.props.tokens[3]) }</tr>
+                        <tr className="row">{ this.generateRow(this.props.tokens[2]) }</tr>
+                        <tr className="row">{ this.generateRow(this.props.tokens[1]) }</tr>
+                        <tr className="row">{ this.generateRow(this.props.tokens[0]) }</tr>
+                        <tr id="button-row">{ this.generateRow(this.buttonsArray) }</tr>
                     </tbody>
                 </table>
             </div>

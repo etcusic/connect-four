@@ -42,6 +42,11 @@ table {
   background-color: grey;
 }
 
+#button-row td {
+  background-color: lavender;
+  border: none;
+}
+
 .token {
   position: absolute;
   top: 50%;
@@ -49,7 +54,6 @@ table {
   transform: translate(-50%, -50%);
   width: 90px;
   height: 90px;
-  /* background-color: whitesmoke; */
   border-radius: 50%;
 }
 
