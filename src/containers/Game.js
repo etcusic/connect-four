@@ -21,19 +21,17 @@ export class Game extends Component {
       }
       nestedArray.push(rowArray)  
     }
-    console.log(nestedArray)
     return nestedArray
   }
 
   render() {
-    {console.log(this.state)}
     return (
       <div>
         <div id="card-panel">
           <CardPanel />
         </div>
         <div id="game-board">
-          <GameBoard />
+          <GameBoard tokens={this.state.tokens}/>
         </div>
       </div>
     )

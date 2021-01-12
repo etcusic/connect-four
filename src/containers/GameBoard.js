@@ -4,13 +4,12 @@ import ButtonCell from '../components/ButtonCell'
 
 export class GameBoard extends Component {
     
-    generateCells = () => {
+    generateCells = (rowIndex) => {
         let cells = []
-        for (let i = 1; i <= 7; i++){
-            let column = `col-${i}`
+        for (let i = 0; i < 7; i++){
             cells.push(
-                <td className={column}>
-                    <Cell />
+                <td className={`col-${i}`}>
+                    <Cell token={this.props.tokens[rowIndex][i]}/>
                 </td>
             )
         }
@@ -19,10 +18,10 @@ export class GameBoard extends Component {
 
     generateRows = () => {
         let rows = []
-        for (let i = 1; i <= 6; i++){
+        for (let i = 0; i < 6; i++){
             rows.push(
                 <tr className="row">
-                    { this.generateCells() }
+                    { this.generateCells(i) }
                 </tr>
             )
         }

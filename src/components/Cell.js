@@ -1,10 +1,9 @@
 import React from 'react'
-import Token from './Token'
 
-const Cell = () => {
+const Cell = ({ token }) => {
     return (
       <div className="cell">
-        <Token />
+        { token }
       </div>
     )
 }
