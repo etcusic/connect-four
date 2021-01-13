@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import GameBoard from './GameBoard'
 import CardPanel from './CardPanel'
 import Token from '../components/Token'
-
+import { connect } from 'react-redux'
 export class Game extends Component {
 
   constructor() {
@@ -38,4 +38,10 @@ export class Game extends Component {
   }
 }
 
-export default Game
+const mapStateToProps = state => {
+  return {
+    tokens: state.tokens
+  }
+}
+
+export default connect(mapStateToProps, { fetchPets })(Game)

@@ -1,4 +1,5 @@
 class API {
+// move this into an "actions" folder
 
     static loadMuppets () {
         fetch("http://localhost:3000/users")
