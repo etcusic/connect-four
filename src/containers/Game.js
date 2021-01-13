@@ -17,7 +17,7 @@ export class Game extends Component {
     for (let i = 0; i < 6; i++) {
       let rowArray = []
       for (let j = 0; j < 7; j++) {
-        rowArray.push(<Token row={i} column={j} color={"whitesmoke"}/>)
+        rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } />)
       }
       nestedArray.push(rowArray)  
     }
@@ -31,7 +31,7 @@ export class Game extends Component {
           <CardPanel />
         </div>
         <div id="game-board">
-          <GameBoard tokens={this.state.tokens}/>
+          <GameBoard tokens={ this.state.tokens }/>
         </div>
       </div>
     )

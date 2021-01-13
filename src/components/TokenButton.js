@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TokenButton = ({ number }) => {
+const TokenButton = ({ number, handleClick }) => {
     return (
-      <div className="token-button">
+      <div className="token-button" onClick={handleClick}>
         <div className="button-number">{ number }</div>
       </div>
     )

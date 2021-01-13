@@ -3,15 +3,21 @@ import TokenButton from '../components/TokenButton'
 
 export class GameBoard extends Component {
 
-    buttonsArray = [
-        <TokenButton number={1}/>,
-        <TokenButton number={2}/>,
-        <TokenButton number={3}/>,
-        <TokenButton number={4}/>,
-        <TokenButton number={5}/>,
-        <TokenButton number={6}/>,
-        <TokenButton number={7}/>
-    ]
+    handleClick = (index) => {
+        let column = this.props.tokens.map(row => row[index])
+        console.log(column)
+        let nextToken = column.find(token => token.props.color === "whitesmoke")
+        console.log(nextToken)
+        // need to change token.props.color - how do I do this??
+    }
+
+    createButtons = () => {
+        let buttons = []
+        for (let i = 0; i < 7; i++){
+            buttons.push(<TokenButton number={i + 1} handleClick={() => this.handleClick(i)} />)
+        }
+        return buttons.map(map => map)
+    }
 
     generateRow = (tokenArray) => {
         let cells = tokenArray.map(token => <td className="cell">{ token }</td>)
@@ -29,7 +35,7 @@ export class GameBoard extends Component {
                         <tr className="row">{ this.generateRow(this.props.tokens[2]) }</tr>
                         <tr className="row">{ this.generateRow(this.props.tokens[1]) }</tr>
                         <tr className="row">{ this.generateRow(this.props.tokens[0]) }</tr>
-                        <tr id="button-row">{ this.generateRow(this.buttonsArray) }</tr>
+                        <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
                     </tbody>
                 </table>
             </div>
