@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import GameBoard from './GameBoard'
 import CardPanel from './CardPanel'
 import Token from '../components/Token'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 export class Game extends Component {
 
   constructor() {
     super()
     this.state = {
-      tokens: this.initializeTokens()
+      tokens: this.initializeTokens(),
+      practice: "INITIAL STATE"
     }
   }
 
@@ -31,17 +32,19 @@ export class Game extends Component {
           <CardPanel />
         </div>
         <div id="game-board">
-          <GameBoard tokens={ this.state.tokens }/>
+          <GameBoard tokens={ this.state.tokens } practice={ this.state.practice } />
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    tokens: state.tokens
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     tokens: state.tokens
+//   }
+// }
 
-export default connect(mapStateToProps, { fetchPets })(Game)
+// export default connect(mapStateToProps, { fetchPets })(Game)
+
+export default Game

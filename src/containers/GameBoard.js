@@ -9,6 +9,7 @@ export class GameBoard extends Component {
         let nextToken = column.find(token => token.props.color === "whitesmoke")
         console.log(nextToken)
         // need to change token.props.color - how do I do this??
+        // Change state.practice
     }
 
     createButtons = () => {
@@ -27,6 +28,7 @@ export class GameBoard extends Component {
     render() {
         return (
             <div id="game-board">
+                <h1>{this.props.practice}</h1>
                 <table id="game-board-table">
                     <tbody>
                         <tr className="row">{ this.generateRow(this.props.tokens[5]) }</tr>
