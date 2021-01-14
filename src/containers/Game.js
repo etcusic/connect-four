@@ -3,6 +3,7 @@ import GameBoard from './GameBoard'
 import CardPanel from './CardPanel'
 import Token from '../components/Token'
 // import { connect } from 'react-redux'
+
 export class Game extends Component {
 
   constructor() {

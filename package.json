@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/helper-builder-react-jsx": "^7.10.4",
     "@babel/preset-react": "^7.12.10"
   }
 }

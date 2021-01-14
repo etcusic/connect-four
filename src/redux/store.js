@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 
-// need to make this applicable to this app
-function changeSomethingReducer(state, action) {
+// simplest version of redux to get things working
+function changeSomethingReducer(state = {}, action) {
     switch (action.type) {
         case "SOMETHING":
             return {}
