@@ -1,10 +1,12 @@
 import { createStore } from 'redux'
 
-// need to make this my own
-function todosReducer(state = todos, action) {
+// need to make this applicable to this app
+function changeSomethingReducer(state, action) {
     switch (action.type) {
-      default:
-        return state
+        case "SOMETHING":
+            return {}
+        default:
+            return state
     }
 }
   

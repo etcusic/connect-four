@@ -10,6 +10,7 @@ export class GameBoard extends Component {
         console.log(nextToken)
         // need to change token.props.color - how do I do this??
         // Change state.practice
+        return {action: "SOMETHING", payload: {tokens: this.props.tokens, practice: "NEW STATE, YAY!"}}
     }
 
     createButtons = () => {
