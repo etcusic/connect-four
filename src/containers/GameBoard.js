@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import TokenButton from '../components/TokenButton'
+import { changeSomething } from '../actions/index'
+import { connect } from 'react-redux'
 
-export class GameBoard extends Component {
+class GameBoard extends Component {
+
+    constructor(props) {
+        super()
+        this.state = {
+            tokens: props.tokens,
+            practice: props.practice
+        }
+    }
 
     handleClick = (index) => {
         let column = this.props.tokens.map(row => row[index])
         console.log(column)
         let nextToken = column.find(token => token.props.color === "whitesmoke")
         console.log(nextToken)
-        // need to change token.props.color - how do I do this??
-        // Change state.practice
-        return {action: "SOMETHING", payload: {tokens: this.props.tokens, practice: "NEW STATE, YAY!"}}
+        changeSomething()
     }
 
     createButtons = () => {
@@ -29,6 +37,7 @@ export class GameBoard extends Component {
     render() {
         return (
             <div id="game-board">
+                {/* trying to change this one thing to make sure redux is working */}
                 <h1>{this.props.practice}</h1>
                 <table id="game-board-table">
                     <tbody>
@@ -47,4 +56,14 @@ export class GameBoard extends Component {
 
 }
 
-export default GameBoard
+const mapStateToProps = state => {
+    return {
+      state: state
+    }
+}
+  
+  
+export default connect(mapStateToProps, { changeSomething })(GameBoard)
+  
+  
+// export default GameBoard

@@ -1,10 +1,20 @@
 import { createStore } from 'redux'
 
+const initialState = {
+    // tokens: this.initializeTokens(),
+    practice: "INITIAL STATE"
+}
 // simplest version of redux to get things working
-function changeSomethingReducer(state = {}, action) {
+function changeSomethingReducer(state = initialState, action) {
     switch (action.type) {
         case "SOMETHING":
-            return {}
+            return {
+                type: "SOMETHING",
+                payload: {
+                    // tokens: state.tokens, 
+                    practice: "FUCKING WORK, PLEASE I SWEAR TO GOD"
+                }
+            }
         default:
             return state
     }

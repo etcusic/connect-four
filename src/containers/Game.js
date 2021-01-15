@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import GameBoard from './GameBoard'
 import CardPanel from './CardPanel'
 import Token from '../components/Token'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
+import { changeSomething } from '../actions/index'
 
-export class Game extends Component {
+class Game extends Component {
 
   constructor() {
     super()
@@ -19,7 +20,7 @@ export class Game extends Component {
     for (let i = 0; i < 6; i++) {
       let rowArray = []
       for (let j = 0; j < 7; j++) {
-        rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } />)
+        rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } changeColor={ this.changeColor } />)
       }
       nestedArray.push(rowArray)  
     }
@@ -33,19 +34,17 @@ export class Game extends Component {
           <CardPanel />
         </div>
         <div id="game-board">
-          <GameBoard tokens={ this.state.tokens } practice={ this.state.practice } />
+          <GameBoard tokens={ this.state.tokens } practice={ this.state.practice } doIt={ this.doIt } />
         </div>
       </div>
     )
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     tokens: state.tokens
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    state: state
+  }
+}
 
-// export default connect(mapStateToProps, { fetchPets })(Game)
-
-export default Game
+export default connect(mapStateToProps, { changeSomething })(Game)

@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import LandingPage from './containers/LandingPage'
 import Game from './containers/Game'
 import Scores from './containers/Scores'
+import WholeGame from './containers/WholeGame'
 
 class App extends Component {
 
@@ -14,7 +15,9 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={ LandingPage } />
-            <Route exact path="/game" component={ Game } />
+
+            <Route exact path="/game" component={ WholeGame } />
+            {/* <Route exact path="/game" component={ Game } /> */}
             <Route exact path="/scores" component={ Scores } />
 
             {/* if there is time => scope out scores by muppet id */}
