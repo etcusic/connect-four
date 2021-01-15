@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GameBoard from './GameBoard'
 import CardPanel from './CardPanel'
 import Token from '../components/Token'
+import TokenButton from '../components/TokenButton'
 import { connect } from 'react-redux'
 import { changeSomething } from '../actions/index'
 
@@ -11,6 +12,7 @@ class Game extends Component {
     super()
     this.state = {
       tokens: this.initializeTokens(),
+      buttons: this.createButtons(),
       practice: "INITIAL STATE"
     }
     console.log(this.state)
@@ -28,14 +30,31 @@ class Game extends Component {
     return nestedArray
   }
 
+  handleClick = (index) => {
+    this.props.changeSomething()
+    console.log(this.state)
+    console.log(this.props)
+}
+
+createButtons = () => {
+    let buttons = []
+    for (let i = 0; i < 7; i++){
+        buttons.push(<TokenButton number={i + 1} handleClick={() => this.handleClick(i)} />)
+    }
+    return buttons.map(button => button)
+}
+
   render() {
     return (
       <div>
+
+        <h1>{this.state.practice}</h1>
+
         <div id="card-panel">
           <CardPanel />
         </div>
         <div id="game-board">
-          <GameBoard tokens={ this.state.tokens } practice={ this.state.practice } doIt={ this.doIt } />
+          <GameBoard tokens={ this.state.tokens } practice={ this.state.practice } buttons={ this.state.buttons } />
         </div>
       </div>
     )

@@ -1,8 +1,10 @@
-export default (state = {practice: "INITIAL STATE"}, action) => {
+export default (state = {practice: "Initial state"}, action) => {
     console.log("reducer")
     switch(action.type){
         case "SOMETHING":
-            return action.payload
+            let newThing = action.payload
+            // debugger
+            return newThing
         default:
             return state
     }
