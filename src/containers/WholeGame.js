@@ -7,7 +7,8 @@ class WholeGame extends Component {
     this.state = {
       tokens: this.initializeTokens(),
       turn: 1,
-      over: false
+      over: false,
+      header: ""
     }
   }
 
@@ -44,17 +45,40 @@ class WholeGame extends Component {
         return buttons.map(map => map)
     }
 
-    makeMove = (matrix, rowNum, colNum) => {
-        if (this.state.turn % 2 === 0){
-            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />  
-        } else {
-            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "red" } />
-        }
+    tryAgain(){
+        this.setState({
+            tokens: this.state,
+            turn: this.state.turn,
+            over: false,
+            header: "INVALID MOVE, TRY AGAIN!!"
+        })
+    }
+
+    notValid(col){
+        console.log(this.state.tokens[5][col].props.color)
+        return this.state.tokens[5][col].props.color !== "whitesmoke"
+    }
+
+    executeMove(matrix){
         this.setState({
             tokens: matrix,
             turn: this.state.turn += 1,
-            over: false
+            over: false,
+            header: this.state.header
         })
+    }
+
+    makeMove = (matrix, rowNum, colNum) => {
+        if (this.notValid(colNum)){
+            this.tryAgain()
+        } else if (this.state.turn % 2 === 0){
+            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />  
+            this.executeMove(matrix)
+        } else {
+            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "red" } />
+            this.executeMove(matrix)
+        }
+        
     }
 
     currentToken(index){
@@ -63,9 +87,15 @@ class WholeGame extends Component {
 
     fourInaRow(array, currentT){
         for (let i = 0; i < 4; i++){
-            let slicedArr = array.slice(i, i + 5)
-            if (slicedArr.length >= 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
-                console.log("game over")
+            let slicedArr = array.slice(i, (i + 4))
+            if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
+                console.log("game over") // need to implement a game over function
+                this.setState({
+                    tokens: this.state.tokens,
+                    turn: this.state.turn += 1,
+                    over: true,
+                    header: "GAME OVER"
+                })
             }
         }
     }
@@ -126,14 +156,13 @@ class WholeGame extends Component {
 
     checkDiagonalLeft(index){
         let currentT = this.currentToken(index)
-        let arr = [...this.diagonalUpLeft(index), currentT, ...this.diagonalDownRight(index)]
+        let arr = [...this.diagonalUpLeft(index), currentT, ...this.diagonalDownRight(index)].filter(token => token)
         this.fourInaRow(arr, currentT)
     }
 
     checkVerticals(index){
         let currentT = this.currentToken(index)
         let column = this.state.tokens.map(row => row[index.col])
-        console.log(column)
         this.fourInaRow(column, currentT)
     }
 
@@ -153,6 +182,7 @@ class WholeGame extends Component {
   render() {
     return (
       <div>
+        <h1>{this.state.header}</h1>
         <div id="game-board">
             <table id="game-board-table">
                 <tbody>

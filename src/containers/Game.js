@@ -31,7 +31,7 @@ class Game extends Component {
   }
 
   handleClick = (index) => {
-    this.props.changeSomething()
+    this.props.changeSomething({tokens: this.state.tokens, buttons: this.state.buttons, practice: this.state.practice})
     console.log(this.state)
     console.log(this.props)
 }
@@ -48,7 +48,8 @@ createButtons = () => {
     return (
       <div>
 
-        <h1>{this.state.practice}</h1>
+        {/* I just want to change this one thing using redux */}
+        <h1>{this.props.practice}</h1>
 
         <div id="card-panel">
           <CardPanel />
@@ -63,7 +64,8 @@ createButtons = () => {
 
 const mapStateToProps = state => {
   return {
-    state: state
+    tokens: state.game.tokens, 
+    practice: state.game.practice
   }
 }
 
