@@ -8,13 +8,4 @@ const TokenButton = ({ number, handleClick }) => {
     )
 }
 
-// const mapStateToProps = state => {
-//   console.log(this.state)
-//   return{
-//       // what goes here??
-//   }
-// }
-
-// export default connect(mapStateToProps)(TokenButton);
-
 export default TokenButton

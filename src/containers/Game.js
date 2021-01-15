@@ -13,6 +13,7 @@ class Game extends Component {
       tokens: this.initializeTokens(),
       practice: "INITIAL STATE"
     }
+    console.log(this.state)
   }
 
   initializeTokens() {

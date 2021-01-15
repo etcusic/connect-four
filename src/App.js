@@ -18,6 +18,7 @@ class App extends Component {
 
             <Route exact path="/game" component={ WholeGame } />
             {/* <Route exact path="/game" component={ Game } /> */}
+            
             <Route exact path="/scores" component={ Scores } />
 
             {/* if there is time => scope out scores by muppet id */}

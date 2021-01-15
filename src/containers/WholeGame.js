@@ -33,7 +33,6 @@ class WholeGame extends Component {
         let column = matrix.map(row => row[index])
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
         this.makeMove(matrix, rowNum, index)
-        // check for winner
         this.checkWinner({row: rowNum, col: index})
     }
 
@@ -58,32 +57,90 @@ class WholeGame extends Component {
         })
     }
 
+    currentToken(index){
+        return this.state.tokens[index. row][index.col]
+    }
+
     fourInaRow(array, currentT){
         for (let i = 0; i < 4; i++){
-            if (array.slice(i, i+5).every(token => token.props.color === currentT.props.color)){
+            let slicedArr = array.slice(i, i + 5)
+            if (slicedArr.length >= 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
                 console.log("game over")
             }
         }
     }
 
+    diagonalUpRight(index){
+        let arr = []
+        let row = index.row + 1
+        let col = index.col + 1
+        while (row < 6 && col < 7){
+            arr.push(this.state.tokens[row][col])
+            row += 1
+            col += 1
+        }
+        return arr
+    }
+
+    diagonalUpLeft(index){
+        let arr = []
+        let row = index.row + 1
+        let col = index.col - 1
+        while (row < 6 && col > -1){
+            arr.push(this.state.tokens[row][col])
+            row += 1
+            col -= 1
+        }
+        return arr.reverse()
+    }
+
+    diagonalDownLeft(index){
+        let arr = []
+        let row = index.row - 1
+        let col = index.col - 1
+        while (row > -1 && col > -1){
+            arr.push(this.state.tokens[row][col])
+            row -= 1
+            col -= 1
+        }
+        return arr.reverse()
+    }
+
+    diagonalDownRight(index){
+        let arr = []
+        let row = index.row - 1
+        let col = index.col + 1
+        while (row > -1 && col > -1){
+            arr.push(this.state.tokens[row][col])
+            row -= 1
+            col += 1
+        }
+        return arr
+    }
+
+    checkDiagonalRight(index){
+        let currentT = this.currentToken(index)
+        let arr = [...this.diagonalDownLeft(index), currentT, ...this.diagonalUpRight(index)]
+        this.fourInaRow(arr, currentT)
+    }
+
+    checkDiagonalLeft(index){
+        let currentT = this.currentToken(index)
+        let arr = [...this.diagonalUpLeft(index), currentT, ...this.diagonalDownRight(index)]
+        this.fourInaRow(arr, currentT)
+    }
+
     checkVerticals(index){
+        let currentT = this.currentToken(index)
         let column = this.state.tokens.map(row => row[index.col])
-        let currentT = column.reverse().find(token => token.props.color !== "whitesmoke")
+        console.log(column)
         this.fourInaRow(column, currentT)
     }
 
     checkHorizontals(index){
+        let currentT = this.currentToken(index)
         let row = this.state.tokens[index.row]
-        let currentT = row[index.col]
         this.fourInaRow(row, currentT)
-    }
-
-    checkDiagonalRight(index){
-        
-    }
-
-    checkDiagonalLeft(index){
-        
     }
 
     checkWinner(index){
@@ -97,20 +154,18 @@ class WholeGame extends Component {
     return (
       <div>
         <div id="game-board">
-                {/* trying to change this one thing to make sure redux is working */}
-                <h1>{this.props.practice}</h1>
-                <table id="game-board-table">
-                    <tbody>
-                        <tr className="row">{ this.generateRow(this.state.tokens[5]) }</tr>
-                        <tr className="row">{ this.generateRow(this.state.tokens[4]) }</tr>
-                        <tr className="row">{ this.generateRow(this.state.tokens[3]) }</tr>
-                        <tr className="row">{ this.generateRow(this.state.tokens[2]) }</tr>
-                        <tr className="row">{ this.generateRow(this.state.tokens[1]) }</tr>
-                        <tr className="row">{ this.generateRow(this.state.tokens[0]) }</tr>
-                        <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
-                    </tbody>
-                </table>
-            </div>
+            <table id="game-board-table">
+                <tbody>
+                    <tr className="row">{ this.generateRow(this.state.tokens[5]) }</tr>
+                    <tr className="row">{ this.generateRow(this.state.tokens[4]) }</tr>
+                    <tr className="row">{ this.generateRow(this.state.tokens[3]) }</tr>
+                    <tr className="row">{ this.generateRow(this.state.tokens[2]) }</tr>
+                    <tr className="row">{ this.generateRow(this.state.tokens[1]) }</tr>
+                    <tr className="row">{ this.generateRow(this.state.tokens[0]) }</tr>
+                    <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
+                </tbody>
+            </table>
+        </div>
       </div>
     )
   }
