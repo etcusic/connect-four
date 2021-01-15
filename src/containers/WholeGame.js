@@ -58,27 +58,39 @@ class WholeGame extends Component {
         })
     }
 
-    checkVerticals(index){
-        let column = this.state.tokens.map(row => row[index.col]).reverse()
-        let valids = column.slice(column.findIndex(token => token.props.color !== "whitesmoke")).slice(0, 4)
-        if (valids.length === 4 && valids.every(token => token.props.color === valids[0].props.color)){
-            console.log("game over")
-        }
-    }
-
-    checkHorizontals(index){
-        let row = this.state.tokens[index.row]
-        let currentT = row[index.col]
+    fourInaRow(array, currentT){
         for (let i = 0; i < 4; i++){
-            if (row.slice(i, i+5).every(token => token.props.color === currentT.props.color)){
+            if (array.slice(i, i+5).every(token => token.props.color === currentT.props.color)){
                 console.log("game over")
             }
         }
     }
 
+    checkVerticals(index){
+        let column = this.state.tokens.map(row => row[index.col])
+        let currentT = column.reverse().find(token => token.props.color !== "whitesmoke")
+        this.fourInaRow(column, currentT)
+    }
+
+    checkHorizontals(index){
+        let row = this.state.tokens[index.row]
+        let currentT = row[index.col]
+        this.fourInaRow(row, currentT)
+    }
+
+    checkDiagonalRight(index){
+        
+    }
+
+    checkDiagonalLeft(index){
+        
+    }
+
     checkWinner(index){
         this.checkVerticals(index)
         this.checkHorizontals(index)
+        this.checkDiagonalRight(index)
+        this.checkDiagonalLeft(index)
     }
 
   render() {
