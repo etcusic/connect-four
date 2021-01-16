@@ -15,7 +15,6 @@ class Game extends Component {
       buttons: this.createButtons(),
       practice: "INITIAL STATE"
     }
-    console.log(this.state)
   }
 
   initializeTokens() {
@@ -48,7 +47,6 @@ createButtons = () => {
     return (
       <div>
 
-        {/* I just want to change this one thing using redux */}
         <h1>{this.props.practice}</h1>
 
         <div id="card-panel">
@@ -64,7 +62,6 @@ createButtons = () => {
 
 const mapStateToProps = state => {
   return {
-    tokens: state.game.tokens, 
     practice: state.game.practice
   }
 }

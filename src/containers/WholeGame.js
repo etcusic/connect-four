@@ -55,7 +55,6 @@ class WholeGame extends Component {
     }
 
     notValid(col){
-        console.log(this.state.tokens[5][col].props.color)
         return this.state.tokens[5][col].props.color !== "whitesmoke"
     }
 
@@ -96,6 +95,8 @@ class WholeGame extends Component {
                     over: true,
                     header: "GAME OVER"
                 })
+                let buttonRow = document.getElementById('button-row')
+                buttonRow.remove()                
             }
         }
     }
