@@ -7,15 +7,17 @@ import { fetchGameLogs } from '../actions/index'
 export class LandingPage extends Component {
 
   componentDidMount(){
-    this.props.fetchMuppets()
+    // this.props.fetchMuppets()
+    // this.props.fetchCards()
+    this.props.fetchGameLogs()
   }
 
   loadList = () => {
-    // console.log(this.props)
+    console.log(this.props)
     // return <li>No info yet </li>
-    return this.props.apiInfo ? this.props.apiInfo.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
+    // return this.props.apiInfo ? this.props.apiInfo.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
     // return this.props.apiInfo ? this.props.apiInfo.map(info => <Card info={ info } />) : (<li>No info yet </li>)
-    // return this.props.apiInfo ? this.props.apiInfo.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
+    return this.props.apiInfo ? this.props.apiInfo.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
   }
 
   handleClick = () => {
@@ -46,11 +48,11 @@ const Muppet = ({ info }) => {
 }
 
 const Card = ({ info }) => {
-  return <li>{ info }</li>
+  return <li>{ info.side_a } - { info.side_b }</li>
 }
 
 const GameLog = ({ info }) => {
-  return <li>{ info }</li>
+  return <li>{ info.user }</li>
 }
 
 const GetMuppetsButton = ({ handleClick }) => {
