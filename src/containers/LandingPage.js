@@ -3,6 +3,13 @@ import { connect } from 'react-redux'
 import { fetchMuppets } from '../actions/index'
 
 export class LandingPage extends Component {
+
+  loadList = () => {
+    this.props.muppets.map(muppet => {
+      <Muppet info={muppet} />
+    })
+  }
+
   render() {
     return (
       <div>
@@ -19,6 +26,14 @@ export class LandingPage extends Component {
       </div>
     )
   }
+}
+
+const Muppet = ({ info }) => {
+  return (
+    <li>
+      { info.name }
+    </li>
+  )
 }
 
 const GetMuppetsButton = () => {
