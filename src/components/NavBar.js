@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom';
 export class NavBar extends Component {
   render() {
     return (
-      <nav>
-        <NavLink to="/">Home Page</NavLink>
-        <NavLink to="/landing-page">Landing Page</NavLink>
-        <NavLink to="/game">Game Page</NavLink>
-        <NavLink to="/scores">Scores Page</NavLink>
+      <nav  class="light-blue lighten-2">
+        <NavLink to="/">-- Home Page -</NavLink>
+        <NavLink to="/landing-page">- Landing Page -</NavLink>
+        <NavLink to="/game">- Game Page -</NavLink>
+        <NavLink to="/scores">- Scores Page --</NavLink>
       </nav>
     )
   }

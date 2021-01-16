@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
-import HomePage from './containers/HomePage'
-import LandingPage from './containers/LandingPage'
+import HomePage from './routes/HomePage'
+import LandingPage from './routes/LandingPage'
 // import Game from './containers/Game'
-import Scores from './containers/Scores'
-import WholeGame from './containers/WholeGame'
+import Scores from './routes/Scores'
+import WholeGame from './routes/WholeGame'
 
 class App extends Component {
 
