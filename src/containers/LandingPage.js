@@ -7,17 +7,21 @@ import { fetchGameLogs } from '../actions/index'
 export class LandingPage extends Component {
 
   componentDidMount(){
-    // this.props.fetchMuppets()
-    // this.props.fetchCards()
+    this.props.fetchMuppets()
+    this.props.fetchCards()
     this.props.fetchGameLogs()
   }
 
-  loadList = () => {
-    console.log(this.props)
-    // return <li>No info yet </li>
-    // return this.props.apiInfo ? this.props.apiInfo.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
-    // return this.props.apiInfo ? this.props.apiInfo.map(info => <Card info={ info } />) : (<li>No info yet </li>)
-    return this.props.apiInfo ? this.props.apiInfo.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
+  loadMuppets = () => {
+    return this.props.apiInfo.muppets ? this.props.apiInfo.muppets.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
+  }
+
+  loadCards = () => {
+    return this.props.apiInfo.cards ? this.props.apiInfo.cards.map(info => <Card info={ info } />) : (<li>No info yet </li>)
+  }
+
+  loadGameLogs = () => {
+    return this.props.apiInfo.gameLogs ? this.props.apiInfo.gameLogs.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
   }
 
   handleClick = () => {
@@ -35,8 +39,16 @@ export class LandingPage extends Component {
             <SendGameLogButton handleClick={ this.handleClick } />
         </div>
         <ul>
-          LIST:
-          { this.loadList() }
+          MUPPET LIST:
+          { this.loadMuppets() }
+        </ul>
+        <ul>
+          CARD LIST:
+          { this.loadCards() }
+        </ul>
+        <ul>
+          GAME LOGS LIST:
+          { this.loadGameLogs() }
         </ul>
       </div>
     )
@@ -90,8 +102,6 @@ const SendGameLogButton = ({ handleClick }) => {
 const mapStateToProps = state => {
   return {
     apiInfo: state.apiInfo
-    // listInfo: state.muppets.listInfo
-    // practice: state.game.practice
   }
 }
 

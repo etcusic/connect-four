@@ -6,7 +6,8 @@ export class NavBar extends Component {
   render() {
     return (
       <nav>
-        <NavLink to="/">Landing Page</NavLink>
+        <NavLink to="/">Home Page</NavLink>
+        <NavLink to="/landing-page">Landing Page</NavLink>
         <NavLink to="/game">Game Page</NavLink>
         <NavLink to="/scores">Scores Page</NavLink>
       </nav>

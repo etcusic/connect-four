@@ -1,19 +1,18 @@
-const apiReducer = (state = false, action) => {
-    let object = state
-    object = action.payload
+const apiReducer = (state = {}, action) => {
+    let apiInfo = state
     switch(action.type){
         case "LOAD_MUPPETS": 
-            console.log(object)
-            return object
+            apiInfo.muppets = action.payload
+            return apiInfo
 
         case "LOAD_CARDS":
-            console.log(object)
-            return object
+            apiInfo.cards = action.payload
+            return apiInfo
 
         case "LOAD_GAME_LOGS":
-            console.log(object)
-            return object
-            
+            apiInfo.gameLogs = action.payload
+            return apiInfo
+
         default:
             return state
     }
