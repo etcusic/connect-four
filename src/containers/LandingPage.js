@@ -5,14 +5,12 @@ import { fetchMuppets } from '../actions/index'
 export class LandingPage extends Component {
 
   componentDidMount(){
-    this.props.fetchMuppets(this.props)
+    this.props.fetchMuppets()
   }
 
-  // loadList = () => {
-  //   this.props.listInfo.map(muppet => {
-  //     <Muppet info={muppet} />
-  //   })
-  // }
+  loadList = () => {
+    return this.props.apiInfo ? this.props.apiInfo.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
+  }
 
   handleClick = () => {
     console.log(this.props)
@@ -30,7 +28,7 @@ export class LandingPage extends Component {
         </div>
         <ul>
           LIST:
-          {/* { this.props.loadList } */}
+          { this.loadList() }
         </ul>
       </div>
     )

@@ -4,7 +4,7 @@ export const changeSomething = (currentState) => {
     return (dispatch) => dispatch({ type: "SOMETHING", payload: object})
 }
 
-export const fetchMuppets = (thing) => {
+export const fetchMuppets = () => {
     return(dispatch) => {
         return fetch('http://localhost:3001/users')
         .then(resp =>  resp.json())
