@@ -4,24 +4,33 @@ import { fetchMuppets } from '../actions/index'
 
 export class LandingPage extends Component {
 
-  loadList = () => {
-    this.props.muppets.map(muppet => {
-      <Muppet info={muppet} />
-    })
+  componentDidMount(){
+    this.props.fetchMuppets(this.props)
   }
 
+  // loadList = () => {
+  //   this.props.listInfo.map(muppet => {
+  //     <Muppet info={muppet} />
+  //   })
+  // }
+
+  handleClick = () => {
+    console.log(this.props)
+  } 
+  
   render() {
     return (
       <div>
         Landing Page Component
         <div className="trial-buttons">
-            <GetMuppetsButton />
-            <GetCardsButton />
-            <GetGameLogsButton />
-            <SendGameLogButton />
+            <GetMuppetsButton handleClick={ this.handleClick } />
+            <GetCardsButton handleClick={ this.handleClick } />
+            <GetGameLogsButton handleClick={ this.handleClick } />
+            <SendGameLogButton handleClick={ this.handleClick } />
         </div>
         <ul>
           LIST:
+          {/* { this.props.loadList } */}
         </ul>
       </div>
     )
@@ -36,36 +45,44 @@ const Muppet = ({ info }) => {
   )
 }
 
-const GetMuppetsButton = () => {
+const GetMuppetsButton = ({ handleClick }) => {
   return (
     <div>
-      <button>GetMuppetsButton</button>
+      <button onClick={ handleClick }>GetMuppetsButton</button>
     </div>
   )
 }
 
-const GetCardsButton = () => {
+const GetCardsButton = ({ handleClick }) => {
   return (
     <div>
-        <button>GetCardsButton</button>
+        <button onClick={ handleClick }>GetCardsButton</button>
     </div>
 )
 }
 
-const GetGameLogsButton = () => {
+const GetGameLogsButton = ({ handleClick }) => {
   return (
     <div>
-        <button>GetGameLogsButton</button>
+        <button onClick={ handleClick }>GetGameLogsButton</button>
     </div>
   )
 }
 
-const SendGameLogButton = () => {
+const SendGameLogButton = ({ handleClick }) => {
   return (
     <div>
-      <button>SendGameLogButton</button>
+      <button onClick={ handleClick }>SendGameLogButton</button>
     </div>
   )
 }
 
-export default LandingPage
+const mapStateToProps = state => {
+  return {
+    apiInfo: state.apiInfo
+    // listInfo: state.muppets.listInfo
+    // practice: state.game.practice
+  }
+}
+
+export default connect(mapStateToProps, { fetchMuppets })(LandingPage)
