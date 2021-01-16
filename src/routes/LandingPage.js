@@ -28,7 +28,7 @@ export class LandingPage extends Component {
   render() {
     return (
       <div>
-        Landing Page Component
+        {/* Landing Page Component
         <ul>
           MUPPET LIST:
           { this.loadMuppets() }
@@ -40,8 +40,9 @@ export class LandingPage extends Component {
         <ul>
           GAME LOGS LIST:
           { this.loadGameLogs() }
-        </ul>
-        <div class="container">
+        </ul> */}
+        <div className="container">
+          Choose your muppet avatar!
           <MuppetsList muppets={ this.props.apiInfo.muppets }/>
         </div>
       </div>
