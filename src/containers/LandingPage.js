@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchMuppets } from '../actions/index'
 
 export class LandingPage extends Component {
   render() {
@@ -11,6 +13,9 @@ export class LandingPage extends Component {
             <GetGameLogsButton />
             <SendGameLogButton />
         </div>
+        <ul>
+          LIST:
+        </ul>
       </div>
     )
   }
