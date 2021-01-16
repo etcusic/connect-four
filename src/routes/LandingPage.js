@@ -29,21 +29,8 @@ export class LandingPage extends Component {
   render() {
     return (
       <div>
-        {/* Landing Page Component
-        <ul>
-          MUPPET LIST:
-          { this.loadMuppets() }
-        </ul>
-        <ul>
-          CARD LIST:
-          { this.loadCards() }
-        </ul>
-        <ul>
-          GAME LOGS LIST:
-          { this.loadGameLogs() }
-        </ul> */}
         <div>
-          Choose your muppet avatar!
+          <h1 class="center">WELCOME TO MUPPETS MEMORY GAMES!</h1>
           {/* <MuppetsList muppets={ this.props.apiInfo.muppets }/> */}
           <Beaker />
         </div>

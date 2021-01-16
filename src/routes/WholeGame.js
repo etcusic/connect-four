@@ -187,12 +187,12 @@ class WholeGame extends Component {
         <div id="game-board">
             <table id="game-board-table">
                 <tbody>
-                    <tr className="row">{ this.generateRow(this.state.tokens[5]) }</tr>
-                    <tr className="row">{ this.generateRow(this.state.tokens[4]) }</tr>
-                    <tr className="row">{ this.generateRow(this.state.tokens[3]) }</tr>
-                    <tr className="row">{ this.generateRow(this.state.tokens[2]) }</tr>
-                    <tr className="row">{ this.generateRow(this.state.tokens[1]) }</tr>
-                    <tr className="row">{ this.generateRow(this.state.tokens[0]) }</tr>
+                    <tr className="token-row">{ this.generateRow(this.state.tokens[5]) }</tr>
+                    <tr className="token-row">{ this.generateRow(this.state.tokens[4]) }</tr>
+                    <tr className="token-row">{ this.generateRow(this.state.tokens[3]) }</tr>
+                    <tr className="token-row">{ this.generateRow(this.state.tokens[2]) }</tr>
+                    <tr className="token-row">{ this.generateRow(this.state.tokens[1]) }</tr>
+                    <tr className="token-row">{ this.generateRow(this.state.tokens[0]) }</tr>
                     <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
                 </tbody>
             </table>
