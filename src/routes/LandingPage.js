@@ -4,6 +4,7 @@ import { fetchMuppets } from '../actions/index'
 import { fetchCards } from '../actions/index'
 import { fetchGameLogs } from '../actions/index'
 import { MuppetsList } from '../containers/MuppetsList.js'
+import { Beaker } from '../containers/Beaker.js'
 
 export class LandingPage extends Component {
 
@@ -41,9 +42,10 @@ export class LandingPage extends Component {
           GAME LOGS LIST:
           { this.loadGameLogs() }
         </ul> */}
-        <div className="container">
+        <div>
           Choose your muppet avatar!
-          <MuppetsList muppets={ this.props.apiInfo.muppets }/>
+          {/* <MuppetsList muppets={ this.props.apiInfo.muppets }/> */}
+          <Beaker />
         </div>
       </div>
     )
