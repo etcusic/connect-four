@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchMuppets } from '../actions/index'
 import { fetchCards } from '../actions/index'
 import { fetchGameLogs } from '../actions/index'
+import { MuppetsList } from '../containers/MuppetsList.js'
 
 export class LandingPage extends Component {
 
@@ -23,21 +24,11 @@ export class LandingPage extends Component {
   loadGameLogs = () => {
     return this.props.apiInfo.gameLogs ? this.props.apiInfo.gameLogs.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
   }
-
-  handleClick = () => {
-    console.log(this.props)
-  } 
   
   render() {
     return (
       <div>
         Landing Page Component
-        <div className="trial-buttons">
-            <GetMuppetsButton handleClick={ this.handleClick } />
-            <GetCardsButton handleClick={ this.handleClick } />
-            <GetGameLogsButton handleClick={ this.handleClick } />
-            <SendGameLogButton handleClick={ this.handleClick } />
-        </div>
         <ul>
           MUPPET LIST:
           { this.loadMuppets() }
@@ -50,6 +41,9 @@ export class LandingPage extends Component {
           GAME LOGS LIST:
           { this.loadGameLogs() }
         </ul>
+        <div class="container">
+          <MuppetsList muppets={ this.props.apiInfo.muppets }/>
+        </div>
       </div>
     )
   }
@@ -65,38 +59,6 @@ const Card = ({ info }) => {
 
 const GameLog = ({ info }) => {
   return <li>{ info.user }</li>
-}
-
-const GetMuppetsButton = ({ handleClick }) => {
-  return (
-    <div>
-      <button onClick={ handleClick }>GetMuppetsButton</button>
-    </div>
-  )
-}
-
-const GetCardsButton = ({ handleClick }) => {
-  return (
-    <div>
-        <button onClick={ handleClick }>GetCardsButton</button>
-    </div>
-)
-}
-
-const GetGameLogsButton = ({ handleClick }) => {
-  return (
-    <div>
-        <button onClick={ handleClick }>GetGameLogsButton</button>
-    </div>
-  )
-}
-
-const SendGameLogButton = ({ handleClick }) => {
-  return (
-    <div>
-      <button onClick={ handleClick }>SendGameLogButton</button>
-    </div>
-  )
 }
 
 const mapStateToProps = state => {
