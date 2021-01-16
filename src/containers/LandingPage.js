@@ -9,7 +9,11 @@ export class LandingPage extends Component {
   }
 
   loadList = () => {
+    // console.log(this.props)
+    // return <li>No info yet </li>
     return this.props.apiInfo ? this.props.apiInfo.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
+    // return this.props.apiInfo ? this.props.apiInfo.map(info => <Card info={ info } />) : (<li>No info yet </li>)
+    // return this.props.apiInfo ? this.props.apiInfo.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
   }
 
   handleClick = () => {
@@ -36,11 +40,15 @@ export class LandingPage extends Component {
 }
 
 const Muppet = ({ info }) => {
-  return (
-    <li>
-      { info.name }
-    </li>
-  )
+  return <li>{ info.name } </li>
+}
+
+const Card = ({ info }) => {
+  return <li>{ info }</li>
+}
+
+const GameLog = ({ info }) => {
+  return <li>{ info }</li>
 }
 
 const GetMuppetsButton = ({ handleClick }) => {
