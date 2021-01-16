@@ -13,3 +13,23 @@ export const fetchMuppets = () => {
         })
     }
 }
+
+export const fetchCards = () => {
+    return(dispatch) => {
+        return fetch('http://localhost:3001/decks/1/cards')
+        .then(resp =>  resp.json())
+        .then(cards => {
+            dispatch({ type: "LOAD_CARDS", payload: cards })
+        })
+    }
+}
+
+export const fetchGameLogs = () => {
+    return(dispatch) => {
+        return fetch('http://localhost:3001/game_logs')
+        .then(resp =>  resp.json())
+        .then(gameLogs => {
+            dispatch({ type: "LOAD_GAME_LOGS", payload: gameLogs })
+        })
+    }
+}

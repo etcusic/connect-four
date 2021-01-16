@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMuppets } from '../actions/index'
+import { fetchCards } from '../actions/index'
+import { fetchGameLogs } from '../actions/index'
 
 export class LandingPage extends Component {
 
@@ -91,4 +93,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchMuppets })(LandingPage)
+export default connect(mapStateToProps, { fetchMuppets, fetchCards, fetchGameLogs })(LandingPage)
