@@ -3,7 +3,7 @@ import React from 'react'
 const GameSelector = () => {
     return (
       <div>
-        Game selector goes here
+        Game Selector
       </div>
     )
 }

@@ -5,13 +5,22 @@ import GameSelector from '../components/GameSelector'
 import GoToGameButton from '../components/GoToGameButton'
 
 export class SidePanel extends Component {
+
+    example = () => {
+        return [
+            {name: "example"},
+            {name: "example"},
+            {name: "example"},
+            {name: "example"}
+        ]
+    }
   
   render() {
     return (
       <div id="side-panel" class="col s2 dark-green">
         SIDE PANEL
         <ProfilePic />
-        <DeckSelector />
+        <DeckSelector decks={ this.example() } />
         <GameSelector />
         <GoToGameButton />
       </div>
