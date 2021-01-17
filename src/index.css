@@ -112,3 +112,18 @@ table {
   transform: translate(-50%, -50%);
   margin-top: 2%;
 }
+
+#home-card {
+  width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.dark-green {
+  background-color: darkgreen;
+}
