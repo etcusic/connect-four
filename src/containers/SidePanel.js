@@ -8,7 +8,7 @@ export class SidePanel extends Component {
   
   render() {
     return (
-      <div id="side-panel">
+      <div id="side-panel" class="col s2">
         SIDE PANEL
         <ProfilePic />
         <DeckSelector />

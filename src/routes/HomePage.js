@@ -7,7 +7,7 @@ export class HomePage extends Component {
   
   render() {
     return (
-      <div>
+      <div class="row">
         <SidePanel />
         <MainContainer />
       </div>
