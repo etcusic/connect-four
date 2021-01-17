@@ -37,7 +37,6 @@ export const fetchGameLogs = () => {
 export const initializeSession = (muppetInfo) => {
     console.log("initialize session")
     console.log(muppetInfo)
-    // route to Home page
     return (dispatch) => dispatch({ type: "INITIALIZE", payload: muppetInfo})
 }
 
