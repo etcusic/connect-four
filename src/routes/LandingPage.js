@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMuppets } from '../actions/index'
-import { fetchCards } from '../actions/index'
+import { fetchDecks } from '../actions/index'
 import { fetchGameLogs } from '../actions/index'
 import { initializeSession } from '../actions/index'
 import { MuppetsList } from '../containers/MuppetsList.js'
@@ -18,7 +18,7 @@ export class LandingPage extends Component {
 
   componentDidMount(){
     this.props.fetchMuppets()
-    this.props.fetchCards()
+    this.props.fetchDecks()
     this.props.fetchGameLogs()
   }
 
@@ -44,4 +44,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchMuppets, fetchCards, fetchGameLogs, initializeSession })(LandingPage)
+export default connect(mapStateToProps, { fetchMuppets, fetchDecks, fetchGameLogs, initializeSession })(LandingPage)

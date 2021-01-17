@@ -8,7 +8,8 @@ export class HomePage extends Component {
   render() {
     return (
       <div class="row">
-        <SidePanel />
+      { console.log(this.props) }
+        <SidePanel session={ this.props.session } decks={this.props.apiInfo.decks}/>
         <MainContainer />
       </div>
     )

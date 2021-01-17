@@ -14,12 +14,12 @@ export const fetchMuppets = () => {
     }
 }
 
-export const fetchCards = () => {
+export const fetchDecks = () => {
     return(dispatch) => {
-        return fetch('http://localhost:3001/decks/1/cards')
+        return fetch('http://localhost:3001/decks')
         .then(resp =>  resp.json())
-        .then(cards => {
-            dispatch({ type: "LOAD_CARDS", payload: cards })
+        .then(decks => {
+            dispatch({ type: "LOAD_DECKS", payload: decks })
         })
     }
 }

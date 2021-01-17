@@ -5,8 +5,8 @@ const apiReducer = (state = {}, action) => {
             apiInfo.muppets = action.payload
             return apiInfo
 
-        case "LOAD_CARDS":
-            apiInfo.cards = action.payload
+        case "LOAD_DECKS":
+            apiInfo.decks = action.payload
             return apiInfo
 
         case "LOAD_GAME_LOGS":

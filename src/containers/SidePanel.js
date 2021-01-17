@@ -8,18 +8,18 @@ export class SidePanel extends Component {
 
     example = () => {
         return [
-            {name: "example"},
-            {name: "example"},
-            {name: "example"},
-            {name: "example"}
+            {name: "Connect 4"},
+            {name: "Speed Match"},
+            {name: "Tic Tac Toe"}
         ]
     }
   
   render() {
     return (
       <div id="side-panel" class="col s2 dark-green">
-        <ProfilePic />
-        <DeckSelector decks={ this.example() } />
+      { console.log(this.props) }
+        <ProfilePic image={ this.props.session.image } />
+        <DeckSelector decks={ this.props.decks } />
         <GameSelector games={ this.example() } />
         <GoToGameButton />
       </div>

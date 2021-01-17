@@ -5,7 +5,7 @@ const DeckSelector = ({ decks }) => {
         <div>
             <div class="selector-title">Select Deck:</div>
             <ul class="collection">
-                { decks.map(deck => <li class="collection-item">{ deck.name }</li>)}
+                { decks.map(deck => <li class="collection-item">{ deck.title }</li>)}
             </ul>
       </div>
     )

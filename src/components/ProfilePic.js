@@ -1,9 +1,10 @@
 import React from 'react'
 
-const ProfilePic = ({ img }) => {
+const ProfilePic = ({ image }) => {
     return (
       <div id="profile-pic" class="center">
-        <img class="circle responsive-img" src="/photos/miss_piggy.jpg"></img>
+      { console.log(image) }
+        <img class="circle responsive-img" src={image}></img>
       </div>
     )
 }
