@@ -116,13 +116,18 @@ table {
 /* needs better centering */
 #home-card {
   width: 700px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: 20%;
+  margin-top: 5%;
   color: whitesmoke;
   font-weight: bold;
   font-size: 50px;
+}
+
+#side-panel {
+  height: 800px;
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .dark-green {

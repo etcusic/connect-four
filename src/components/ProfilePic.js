@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ProfilePic = () => {
+const ProfilePic = ({ img }) => {
     return (
       <div id="profile-pic">
-        Profile picture goes here
+        Profile pic
       </div>
     )
 }

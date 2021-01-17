@@ -6,7 +6,6 @@ export class MainContainer extends Component {
   render() {
     return (
       <div class="col s10">
-        MAIN CONTAINER
         <HomeCard />
       </div>
     )
