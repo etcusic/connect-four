@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import LeftCards from '../containers/LeftCards'
 
 class WholeGame extends Component {
 
@@ -8,6 +10,7 @@ class WholeGame extends Component {
       tokens: this.initializeTokens(),
       turn: 1,
       over: false,
+    //   cards: this.props.cards,
       header: ""
     }
   }
@@ -184,6 +187,7 @@ class WholeGame extends Component {
     return (
       <div>
         <h1>{this.state.header}</h1>
+        <LeftCards cards={ this.state.cards.slice(0,7) } />
         <div id="game-board">
             <table id="game-board-table">
                 <tbody>
@@ -213,5 +217,13 @@ const TokenButton = ({ number, handleClick }) => {
       </div>
     )
 }
-
-export default WholeGame
+const mapStateToProps = state => {
+    return {
+      apiInfo: state.apiInfo,
+      session: state.session,
+      game: state.game
+    }
+}
+  
+export default connect(mapStateToProps)(WholeGame)
+// export default WholeGame
