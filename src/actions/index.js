@@ -54,3 +54,15 @@ export const initializeSession = (muppetInfo) => {
     return (dispatch) => dispatch({ type: "INITIALIZE", payload: muppetInfo})
 }
 
+export const initializeGame = (cardsArray) => {
+    console.log("initialize game")
+    console.log(cardsArray)
+    const game = {
+        cards: cardsArray,
+        tokens: [],
+        turn: 1,
+        over: false,
+        header: "Press the play button to begin!"
+    }
+    return (dispatch) => dispatch({ type: "INITIALIZE_GAME", payload: game})
+}

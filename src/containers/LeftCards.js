@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import Card from '../components/Card'
 
 class LeftCards extends Component {
 
     generateCards = () => {
         this.props.cards.map(card => {
-            return <Card />
+            return <Card info={card} />
         })
     }
 
@@ -12,7 +13,7 @@ class LeftCards extends Component {
         return (
             <div id="left-cards">
                 <ul>
-
+                    { this.generateCards() }
                 </ul>
             </div>
         )

@@ -6,11 +6,11 @@ class WholeGame extends Component {
 
   constructor() {
     super()
+    // this.state = this.props.game
     this.state = {
       tokens: this.initializeTokens(),
       turn: 1,
       over: false,
-    //   cards: this.props.cards,
       header: ""
     }
   }
@@ -187,7 +187,7 @@ class WholeGame extends Component {
     return (
       <div>
         <h1>{this.state.header}</h1>
-        <LeftCards cards={ this.state.cards.slice(0,7) } />
+        <LeftCards cards={ [] } />
         <div id="game-board">
             <table id="game-board-table">
                 <tbody>

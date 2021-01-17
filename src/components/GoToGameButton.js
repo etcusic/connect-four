@@ -1,9 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const GoToGameButton = () => {
+const GoToGameButton = ({ cards, initializeGame }) => {
     return (
       <div class="three-percent center" id="button-div">
-        <button class="btn white-smoke waves-effect">Go To Game</button>
+      {console.log(cards)}
+        <button class="btn white-smoke waves-effect" onClick={() => initializeGame(cards) }>Go To Game</button>
       </div>
     )
 }

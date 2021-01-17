@@ -19,7 +19,7 @@ const apiReducer = (state = {}, action) => {
 
         case "LOAD_CARDS":
             apiInfo.cards = action.payload
-            return apiInfo
+            return apiInfo  
 
         default:
             return state

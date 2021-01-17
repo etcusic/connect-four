@@ -21,7 +21,7 @@ export class SidePanel extends Component {
         <ProfilePic image={ this.props.session.image } />
         <DeckSelector decks={ this.props.decks } fetchCards={this.props.fetchCards} />
         <GameSelector games={ this.example() } />
-        <GoToGameButton />
+        <GoToGameButton cards={this.props.cards} initializeGame={this.props.initializeGame} />
       </div>
     )
   }
