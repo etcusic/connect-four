@@ -22,18 +22,6 @@ export class LandingPage extends Component {
     this.props.fetchGameLogs()
   }
 
-  loadMuppets = () => {
-    return this.props.apiInfo.muppets ? this.props.apiInfo.muppets.map(info => <Muppet info={ info } />) : (<li>No info yet </li>)
-  }
-
-  loadCards = () => {
-    return this.props.apiInfo.cards ? this.props.apiInfo.cards.map(info => <Card info={ info } />) : (<li>No info yet </li>)
-  }
-
-  loadGameLogs = () => {
-    return this.props.apiInfo.gameLogs ? this.props.apiInfo.gameLogs.map(info => <GameLog info={ info } />) : (<li>No info yet </li>)
-  }
-
   showMuppetsList = () => {
     this.setState({
       view: <MuppetsList muppets={ this.props.apiInfo.muppets} initializeSession={this.props.initializeSession} />
@@ -49,21 +37,10 @@ export class LandingPage extends Component {
   }
 }
 
-const Muppet = ({ info }) => {
-  return <li>{ info.name } </li>
-}
-
-const Card = ({ info }) => {
-  return <li>{ info.side_a } - { info.side_b }</li>
-}
-
-const GameLog = ({ info }) => {
-  return <li>{ info.user }</li>
-}
-
 const mapStateToProps = state => {
   return {
-    apiInfo: state.apiInfo
+    apiInfo: state.apiInfo,
+    session: state.session
   }
 }
 
