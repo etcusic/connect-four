@@ -131,3 +131,14 @@ table {
 .dark-green {
   background-color: darkgreen;
 }
+
+.white-smoke {
+  background-color: whitesmoke;
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.selector-title {
+  color: whitesmoke;
+  font-weight: bold;
+}

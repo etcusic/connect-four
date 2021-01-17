@@ -18,10 +18,9 @@ export class SidePanel extends Component {
   render() {
     return (
       <div id="side-panel" class="col s2 dark-green">
-        SIDE PANEL
         <ProfilePic />
         <DeckSelector decks={ this.example() } />
-        <GameSelector />
+        <GameSelector games={ this.example() } />
         <GoToGameButton />
       </div>
     )

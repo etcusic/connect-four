@@ -1,9 +1,12 @@
 import React from 'react'
 
-const GameSelector = () => {
+const GameSelector = ({ games }) => {
     return (
       <div>
-        Game Selector
+        <div class="selector-title">Select Game:</div>
+        <ul class="collection">
+            { games.map(game => <li class="collection-item">{ game.name }</li>)}
+        </ul>
       </div>
     )
 }

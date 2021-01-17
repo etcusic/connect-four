@@ -2,8 +2,8 @@ import React from 'react'
 
 const GoToGameButton = () => {
     return (
-      <div>
-        GoToGameButton
+      <div class="center">
+        <button class="btn-large white-smoke waves-effect">Go To Game</button>
       </div>
     )
 }
