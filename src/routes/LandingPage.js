@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchMuppets } from '../actions/index'
 import { fetchCards } from '../actions/index'
 import { fetchGameLogs } from '../actions/index'
+import { initializeSession } from '../actions/index'
 import { MuppetsList } from '../containers/MuppetsList.js'
 import { Beaker } from '../containers/Beaker.js'
 
@@ -35,7 +36,7 @@ export class LandingPage extends Component {
 
   showMuppetsList = () => {
     this.setState({
-      view: <MuppetsList muppets={ this.props.apiInfo.muppets }/>
+      view: <MuppetsList muppets={ this.props.apiInfo.muppets} initializeSession={this.props.initializeSession} />
     })
   }
   
@@ -66,4 +67,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchMuppets, fetchCards, fetchGameLogs })(LandingPage)
+export default connect(mapStateToProps, { fetchMuppets, fetchCards, fetchGameLogs, initializeSession })(LandingPage)
