@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SidePanel from '../containers/SidePanel'
 import MainContainer from '../containers/MainContainer'
 import { connect } from 'react-redux'
+import { fetchCards } from '../actions/index'
 
 export class HomePage extends Component {
   
@@ -9,7 +10,7 @@ export class HomePage extends Component {
     return (
       <div class="row">
       { console.log(this.props) }
-        <SidePanel session={ this.props.session } decks={this.props.apiInfo.decks}/>
+        <SidePanel session={ this.props.session } decks={this.props.apiInfo.decks} cards={this.props.apiInfo.cards} fetchCards={ this.props.fetchCards }/>
         <MainContainer />
       </div>
     )
@@ -23,4 +24,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(HomePage)
+export default connect(mapStateToProps, { fetchCards })(HomePage)

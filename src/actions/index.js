@@ -1,9 +1,3 @@
-export const changeSomething = (currentState) => {
-    let object = currentState
-    object.practice = "NEW STATE, YAY!!"
-    return (dispatch) => dispatch({ type: "SOMETHING", payload: object})
-}
-
 export const fetchMuppets = () => {
     return(dispatch) => {
         return fetch('http://localhost:3001/users')
@@ -40,6 +34,16 @@ export const fetchConnectFourLogs = () => {
         .then(resp =>  resp.json())
         .then(gameLogs => {
             dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
+        })
+    }
+}
+
+export const fetchCards = (id) => {
+    return(dispatch) => {
+        return fetch(`http://localhost:3001/decks/${id}/cards`)
+        .then(resp =>  resp.json())
+        .then(cards => {
+            dispatch({ type: "LOAD_CARDS", payload: cards })
         })
     }
 }

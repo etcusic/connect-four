@@ -17,6 +17,10 @@ const apiReducer = (state = {}, action) => {
             apiInfo.connectFourLogs = action.payload
             return apiInfo
 
+        case "LOAD_CARDS":
+            apiInfo.cards = action.payload
+            return apiInfo
+
         default:
             return state
     }
