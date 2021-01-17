@@ -142,3 +142,13 @@ table {
   color: whitesmoke;
   font-weight: bold;
 }
+
+#profile-pic {
+  height: 200px;
+  width: 200px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
