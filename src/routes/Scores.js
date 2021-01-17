@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import GameLogsTable from '../containers/GameLogsTable'
+import { GameLogsTable } from '../containers/GameLogsTable'
 
 export class Scores extends Component {
   render() {
