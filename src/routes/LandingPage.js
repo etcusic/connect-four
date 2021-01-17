@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 import { fetchMuppets } from '../actions/index'
 import { fetchDecks } from '../actions/index'
 import { fetchGameLogs } from '../actions/index'
+import { fetchConnectFourLogs } from '../actions/index'
 import { initializeSession } from '../actions/index'
 import { MuppetsList } from '../containers/MuppetsList.js'
 import { Beaker } from '../containers/Beaker.js'
 
 export class LandingPage extends Component {
 
+  // need to figure out a way to handle these view changes without setting state here - maybe in the Redux store?
   constructor () {
     super()
     this.state = {
@@ -20,6 +22,7 @@ export class LandingPage extends Component {
     this.props.fetchMuppets()
     this.props.fetchDecks()
     this.props.fetchGameLogs()
+    this.props.fetchConnectFourLogs()
   }
 
   showMuppetsList = () => {
@@ -44,4 +47,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchMuppets, fetchDecks, fetchGameLogs, initializeSession })(LandingPage)
+export default connect(mapStateToProps, { fetchMuppets, fetchDecks, fetchGameLogs, fetchConnectFourLogs, initializeSession })(LandingPage)

@@ -34,6 +34,16 @@ export const fetchGameLogs = () => {
     }
 }
 
+export const fetchConnectFourLogs = () => {
+    return(dispatch) => {
+        return fetch('http://localhost:3001/connect_four_logs') 
+        .then(resp =>  resp.json())
+        .then(gameLogs => {
+            dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
+        })
+    }
+}
+
 export const initializeSession = (muppetInfo) => {
     console.log("initialize session")
     console.log(muppetInfo)
