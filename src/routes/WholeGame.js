@@ -65,7 +65,6 @@ class WholeGame extends Component {
   }
 
   shuffleAndDeal(arr){
-      console.log(arr)
       let shuffled = this.shuffle(arr)
       this.setState({
         tokens: this.state.tokens,
@@ -74,7 +73,7 @@ class WholeGame extends Component {
         rightCards: this.generateRightCards(shuffled.slice(0,7)),
         turn: this.state.turn,
         over: false,
-        header: ""
+        header: "YOUR TURN"
     })       
   }
 
@@ -97,10 +96,11 @@ class WholeGame extends Component {
         let column = matrix.map(row => row[index])
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
         this.makeMove(matrix, rowNum, index)
-        this.checkWinner({row: rowNum, col: index})
+        // this.checkWinner({row: rowNum, col: index})
     }
 
     tryAgain(){
+        console.log(this.state)
         this.setState({
             tokens: this.state.tokens,
             turn: this.state.turn,
@@ -124,13 +124,16 @@ class WholeGame extends Component {
 
     makeMove = (matrix, rowNum, colNum) => {
         if (this.notValid(colNum)){
+            console.log("not valid")
             this.tryAgain()
         } else if (this.state.turn % 2 === 0){
             matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />  
             this.executeMove(matrix)
+            this.checkWinner({row: rowNum, col: colNum})
         } else {
             matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "red" } />
             this.executeMove(matrix)
+            this.checkWinner({row: rowNum, col: colNum})
         }
         
     }
@@ -146,14 +149,14 @@ class WholeGame extends Component {
                 console.log("game over") // need to implement a game over function
                 this.setState({
                     tokens: this.state.tokens,
-                    turn: this.state.turn += 1,
+                    turn: this.state.turn,
                     over: true,
                     header: "GAME OVER"
                 })
-                let buttonRow = document.getElementById('button-row')
-                buttonRow.remove()                
+                document.getElementById('button-row').remove()             
             }
         }
+        console.log(this.state.over)
     }
 
     diagonalUpRight(index){
@@ -233,8 +236,9 @@ class WholeGame extends Component {
         this.checkHorizontals(index)
         this.checkDiagonalRight(index)
         this.checkDiagonalLeft(index)
+        // how do i fix this??
         if (this.state.over === false){
-            console.log(this.state.cards[index.col])
+            console.log("execute next turn")
             let arr = this.state.cards
             arr.splice(index.col, 1)
             this.shuffleAndDeal(arr)
