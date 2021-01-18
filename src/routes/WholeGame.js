@@ -11,9 +11,10 @@ class WholeGame extends Component {
     // this.state = this.props.game
     this.state = {
       tokens: this.initializeTokens(),
-      cards: [],
+      cards: this.generateCards(),
       turn: 1,
       over: false,
+      firstSeven: this.generateCards(),
       header: ""
     }
   }
@@ -44,6 +45,15 @@ class WholeGame extends Component {
   generateRow = (tokenArray) => {
     let cells = tokenArray.map(token => <td className="cell">{ token }</td>)
     return cells.map(cell => cell)
+  }
+
+  generateCards(){
+      let array = []
+      let info = {side_a: "A", side_b: "B"}
+      for (let i = 0; i < 7; i++) {
+        array.push(<Card info={ info } />)
+      }
+      return array
   }
 
   handleClick = (index) => {
@@ -199,15 +209,15 @@ class WholeGame extends Component {
 
   render() {
     return (
-      <div>
+      <div class="row">
         
-        <div class="col s3">
-            <LeftCards cards={ this.state.cards } />
+        <div class="col s2">
+            { this.state.firstSeven.map(card => card) }
         </div>
 
-        <div class="col s6">
+        <div class="col s8">
             <h2 class="center">{this.state.header}</h2>
-            <div id="game-board" class="col s6">
+            <div id="game-board" class="col s12">
                 <table id="game-board-table" class="center">
                     <tbody>
                         <tr className="token-row">{ this.generateRow(this.state.tokens[5]) }</tr>
@@ -222,8 +232,8 @@ class WholeGame extends Component {
             </div>
         </div>
 
-        <div class="col s3">
-
+        <div class="col s2">
+            { this.state.firstSeven.map(card => card) }
         </div>
 
       </div>
@@ -242,6 +252,15 @@ const TokenButton = ({ number, handleClick }) => {
       </div>
     )
 }
+
+const Card = ({ info }) => {
+    return (
+      <div className="quiz-card">
+        { info.side_a }
+      </div>
+    )
+}
+
 const mapStateToProps = state => {
     return {
       apiInfo: state.apiInfo,
