@@ -12,7 +12,7 @@ class ConnectFour extends Component {
         super()
         this.state = {
             tokens: this.initializeTokens(),
-            cards: this.generateCards(),
+            cards: [],
             leftCards: [],
             rightCards: [],
             turn: 1,
@@ -47,12 +47,31 @@ class ConnectFour extends Component {
         return nestedArray
     }
 
-    generateCards(){
-        let array = []
-        for (let i = 0; i < 7; i++) {
-        array.push({side_a: "", side_b: ""})
-        }
-        return array
+    shuffle (arrayOfCards) {
+        return arrayOfCards.sort(() => Math.random() - 0.5)
+    }
+
+    generateLeftCards(arr){
+        return arr.map((card, index) => <LeftCard info={card} number={index} />)
+    }
+
+    generateRightCards(arr){
+        let rightCards = arr.map((card, index) => <RightCard info={card} handleClick={() => this.handleClick(index)} />)
+        let shuffled = this.shuffle(rightCards)
+        return shuffled
+    }
+
+    tryAgain(){
+        console.log(this.state)
+        this.setState({
+            cards: this.state.cards,
+            leftCards: this.state.leftCards,
+            rightCards: this.state.rightCards,
+            tokens: this.state.tokens,
+            turn: this.state.turn,
+            over: false,
+            header: "INVALID MOVE, TRY AGAIN!!"
+        })
     }
 
     shuffleAndDeal(arr){
@@ -68,25 +87,21 @@ class ConnectFour extends Component {
         })       
     }
 
-    generateLeftCards(arr){
-        return arr.map((card, index) => <LeftCard info={card} number={index} />)
-    }
-
-    generateRightCards(arr){
-        let rightCards = arr.map((card, index) => <RightCard info={card} handleClick={() => this.handleClick(index)} />)
-        let shuffled = this.shuffle(rightCards)
-        return shuffled
-    }
-
-    shuffle (arrayOfCards) {
-        return arrayOfCards.sort(() => Math.random() - 0.5)
+    makeMove = (matrix, rowNum, colNum) => {
+        matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />  
+        this.executeMove(matrix)
+        this.checkWinner({row: rowNum, col: colNum})
     }
 
     handleClick = (index) => {
         let matrix = this.state.tokens
         let column = matrix.map(row => row[index])
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
-        this.makeMove(matrix, rowNum, index)
+        if (rowNum === -1){
+            this.tryAgain()
+        } else {
+            this.makeMove(matrix, rowNum, index)
+        }
     }
 
     render() {
