@@ -74,8 +74,8 @@ class ConnectFour extends Component {
         })
     }
 
-    shuffleAndDeal(){
-        let shuffled = this.shuffle(this.state.cards)
+    shuffleAndDeal(arr){
+        let shuffled = this.shuffle(arr)
         this.setState({
             tokens: this.state.tokens,
             cards: shuffled,
@@ -110,9 +110,6 @@ class ConnectFour extends Component {
             this.makeMove(matrix, rowNum, index)
             this.checkWinner({row: rowNum, col: index})
             this.removeCardAndDeal({row: rowNum, col: index})
-            // new Promise(() => this.makeMove(matrix, rowNum, index))
-            //     .then(this.checkWinner({row: rowNum, col: index}))
-            //     .then(this.removeCardAndDeal({row: rowNum, col: index}))
         }
     }
 
