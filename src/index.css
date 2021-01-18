@@ -73,7 +73,7 @@ code {
   height: 100px;
   background-color: darkgreen;
   color: whitesmoke;
-  top: 5px;
+  /* top: 5px; */
   border: 5px solid black;
   font-weight: bold;
   font-size: 35px;
@@ -156,4 +156,8 @@ img {
 
 #button-div {
   margin-top: 50px;
+}
+
+.number {
+  font-size: 20px;
 }

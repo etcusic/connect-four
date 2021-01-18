@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import LeftCards from '../containers/LeftCards'
 import { fetchCards } from '../actions/index'
 
 class WholeGame extends Component {
@@ -51,6 +50,14 @@ class WholeGame extends Component {
     return cells.map(cell => cell)
   }
 
+  createButtons = () => {
+    let buttons = []
+    for (let i = 0; i < 7; i++){
+        buttons.push(<TokenButton number={i + 1} />)
+    }
+    return buttons.map(map => map)
+  }
+
   generateCards(){
       let array = []
       for (let i = 0; i < 7; i++) {
@@ -59,14 +66,27 @@ class WholeGame extends Component {
       return array
   }
 
+  shuffleAndDeal(){
+      let shuffled = this.shuffle(this.state.cards)
+      this.setState({
+        tokens: this.state.tokens,
+        cards: shuffled,
+        leftCards: this.generateLeftCards(shuffled.slice(0,7)),
+        rightCards: this.generateRightCards(shuffled.slice(0,7)),
+        turn: this.state.turn,
+        over: false,
+        header: ""
+    })       
+  }
+
   generateLeftCards(arr){
-    let shuffled = this.shuffle(arr)
-    return shuffled.map((card, index) => <LeftCard info={card} number={index} />)
+    return arr.map((card, index) => <LeftCard info={card} number={index} />)
   }
 
   generateRightCards(arr){
-    let shuffled = this.shuffle(arr)
-    return shuffled.map(card => <RightCard info={card} />)
+    let rightCards = arr.map((card, index) => <RightCard info={card} handleClick={() => this.handleClick(index)} />)
+    let shuffled = this.shuffle(rightCards)
+    return shuffled
   }
   
   shuffle (arrayOfCards) {
@@ -79,14 +99,6 @@ class WholeGame extends Component {
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
         this.makeMove(matrix, rowNum, index)
         this.checkWinner({row: rowNum, col: index})
-    }
-
-    createButtons = () => {
-        let buttons = []
-        for (let i = 0; i < 7; i++){
-            buttons.push(<TokenButton number={i + 1} handleClick={() => this.handleClick(i)} />)
-        }
-        return buttons.map(map => map)
     }
 
     tryAgain(){
@@ -262,9 +274,9 @@ const Token = ({ row, column, color }) => {
     return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
 }
 
-const TokenButton = ({ number, handleClick }) => {
+const TokenButton = ({ number }) => {
     return (
-      <div className="token-button" onClick={handleClick}>
+      <div className="token-button">
         <div className="button-number">{ number }</div>
       </div>
     )
@@ -273,16 +285,16 @@ const TokenButton = ({ number, handleClick }) => {
 const LeftCard = ({ info, number }) => {
     return (
       <div className="quiz-card">
-        <div class="left">{ number }</div>
-        <div class="extra-center">{ info.side_a }</div>
+        <div class="left number">{ number + 1 }</div>
+        <div class="center">{ info.side_a }</div>
       </div>
     )
 }
 
-const RightCard = ({ info }) => {
+const RightCard = ({ info, handleClick }) => {
     return (
-      <div className="quiz-card">
-        <div class="extra-center">
+      <div className="quiz-card" onClick={handleClick}>
+        <div class="center">
             { info.side_b }
         </div>
       </div>
