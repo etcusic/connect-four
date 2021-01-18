@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
 import HomePage from './routes/HomePage'
 import LandingPage from './routes/LandingPage'
-import ConnectFour from './routes/ConnectFour'
 import Scores from './routes/Scores'
 // import WholeGame from './routes/WholeGame'
+import ConnectFour from './routes/ConnectFour'
 
 class App extends Component {
 
@@ -14,6 +14,7 @@ class App extends Component {
       <Router>
       <NavBar />
         <div>
+
           <Switch>
             <Route exact path="/" component={ LandingPage } />
             <Route exact path="/home" component={ HomePage } />
