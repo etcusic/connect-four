@@ -1,4 +1,4 @@
-import React from 'react-redux'
+import React from 'react'
 
 const LeftCard = ({ info, number }) => {
     return (

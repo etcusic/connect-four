@@ -1,4 +1,4 @@
-import React, { Component } from 'react-redux'
+import React, { Component } from 'react'
 import TokenButton from '../game-components/Token'
 
 export class GameBoard extends Component {
@@ -19,8 +19,8 @@ export class GameBoard extends Component {
     render () {
         return (
 
-            <div class="col s8">
-                <h2 class="center">{this.state.header}</h2>
+            <div>
+                <h2 class="center">{this.props.header}</h2>
                 <div id="game-board" class="col s12">
                     <table id="game-board-table" class="center">
                         <tbody>
@@ -39,3 +39,5 @@ export class GameBoard extends Component {
         )
     }
 }
+
+export default GameBoard
