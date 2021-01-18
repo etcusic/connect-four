@@ -20,7 +20,7 @@ export class GameBoard extends Component {
         return (
 
             <div>
-                <h2 class="center">{this.props.header}</h2>
+                <h2 id="game-header" class="center">{this.props.header}</h2>
                 <div id="game-board" class="col s12">
                     <table id="game-board-table" class="center">
                         <tbody>

@@ -74,8 +74,8 @@ class ConnectFour extends Component {
         })
     }
 
-    shuffleAndDeal(arr){
-        let shuffled = this.shuffle(arr)
+    shuffleAndDeal(){
+        let shuffled = this.shuffle(this.state.cards)
         this.setState({
             tokens: this.state.tokens,
             cards: shuffled,
@@ -108,7 +108,118 @@ class ConnectFour extends Component {
             this.tryAgain()
         } else {
             this.makeMove(matrix, rowNum, index)
+            this.checkWinner({row: rowNum, col: index})
+            this.removeCardAndDeal({row: rowNum, col: index})
+            // new Promise(() => this.makeMove(matrix, rowNum, index))
+            //     .then(this.checkWinner({row: rowNum, col: index}))
+            //     .then(this.removeCardAndDeal({row: rowNum, col: index}))
         }
+    }
+
+    currentToken(index){
+        return this.state.tokens[index. row][index.col]
+    }
+
+    fourInaRow(array, currentT){
+        for (let i = 0; i < 4; i++){
+            let slicedArr = array.slice(i, (i + 4))
+            if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
+                console.log("game over") // need to implement a game over function
+                this.endGame()
+            }
+        }
+    }
+
+    diagonalUpRight(index){
+        let arr = []
+        let row = index.row + 1
+        let col = index.col + 1
+        while (row < 6 && col < 7){
+            arr.push(this.state.tokens[row][col])
+            row += 1
+            col += 1
+        }
+        return arr
+    }
+
+    diagonalUpLeft(index){
+        let arr = []
+        let row = index.row + 1
+        let col = index.col - 1
+        while (row < 6 && col > -1){
+            arr.push(this.state.tokens[row][col])
+            row += 1
+            col -= 1
+        }
+        return arr.reverse()
+    }
+
+    diagonalDownLeft(index){
+        let arr = []
+        let row = index.row - 1
+        let col = index.col - 1
+        while (row > -1 && col > -1){
+            arr.push(this.state.tokens[row][col])
+            row -= 1
+            col -= 1
+        }
+        return arr.reverse()
+    }
+
+    diagonalDownRight(index){
+        let arr = []
+        let row = index.row - 1
+        let col = index.col + 1
+        while (row > -1 && col > -1){
+            arr.push(this.state.tokens[row][col])
+            row -= 1
+            col += 1
+        }
+        return arr
+    }
+
+    checkDiagonalRight(index){
+        let currentT = this.currentToken(index)
+        let arr = [...this.diagonalDownLeft(index), currentT, ...this.diagonalUpRight(index)]
+        this.fourInaRow(arr, currentT)
+    }
+
+    checkDiagonalLeft(index){
+        let currentT = this.currentToken(index)
+        let arr = [...this.diagonalUpLeft(index), currentT, ...this.diagonalDownRight(index)].filter(token => token)
+        this.fourInaRow(arr, currentT)
+    }
+
+    checkVerticals(index){
+        let currentT = this.currentToken(index)
+        let column = this.state.tokens.map(row => row[index.col])
+        this.fourInaRow(column, currentT)
+    }
+
+    checkHorizontals(index){
+        let currentT = this.currentToken(index)
+        let row = this.state.tokens[index.row]
+        this.fourInaRow(row, currentT)
+    }
+
+    checkWinner(index){
+        this.checkVerticals(index)
+        this.checkHorizontals(index)
+        this.checkDiagonalRight(index)
+        this.checkDiagonalLeft(index)
+    }
+
+    removeCardAndDeal(index){
+        let arr = this.state.cards
+        arr.splice(index.col, 1)
+        this.shuffleAndDeal(arr)
+    }
+
+    endGame(){
+        // cannot get set state to work here and it is super frustrating
+        document.getElementById('button-row').remove()  
+        document.querySelectorAll('.quiz-card').forEach(element => element.remove())
+        document.getElementById('game-header').innerHTML = "GAME OVER"
     }
 
     render() {
