@@ -97,7 +97,7 @@ class WholeGame extends Component {
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
         this.makeMove(matrix, rowNum, index)
         // this.checkWinner({row: rowNum, col: index})
-    }
+  }
 
     tryAgain(){
         console.log(this.state)
@@ -134,6 +134,7 @@ class WholeGame extends Component {
             matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "red" } />
             this.executeMove(matrix)
             this.checkWinner({row: rowNum, col: colNum})
+
         }
         
     }
@@ -147,16 +148,9 @@ class WholeGame extends Component {
             let slicedArr = array.slice(i, (i + 4))
             if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
                 console.log("game over") // need to implement a game over function
-                this.setState({
-                    tokens: this.state.tokens,
-                    turn: this.state.turn,
-                    over: true,
-                    header: "GAME OVER"
-                })
-                document.getElementById('button-row').remove()             
+                this.endGame()
             }
         }
-        console.log(this.state.over)
     }
 
     diagonalUpRight(index){
@@ -231,18 +225,43 @@ class WholeGame extends Component {
         this.fourInaRow(row, currentT)
     }
 
-    checkWinner(index){
-        this.checkVerticals(index)
-        this.checkHorizontals(index)
-        this.checkDiagonalRight(index)
-        this.checkDiagonalLeft(index)
-        // how do i fix this??
-        if (this.state.over === false){
+    isGameOver(index){
+        console.log("is game over?", this.state.over)
+        if (this.state.over === true){
+            console.log("game is over")
+        } else {
             console.log("execute next turn")
             let arr = this.state.cards
             arr.splice(index.col, 1)
             this.shuffleAndDeal(arr)
         }
+    }
+
+    checkWinner(index){
+        this.checkVerticals(index)
+        this.checkHorizontals(index)
+        this.checkDiagonalRight(index)
+        this.checkDiagonalLeft(index)
+        this.isGameOver(index)
+    }
+
+    makeAPromise(myFunction){
+        return new Promise(() => myFunction)
+    }
+
+    endGame(){
+        document.getElementById('button-row').remove()  
+        document.querySelectorAll('.quiz-card').forEach(element => element.remove())
+        this.setState({
+            tokens: this.state.tokens,
+            cards: [],
+            leftCards: [],
+            rightCards: [],
+            turn: this.state.turn,
+            over: true,
+            header: "GAME OVER"
+        })
+        console.log(this.state)
     }
 
   render() {
