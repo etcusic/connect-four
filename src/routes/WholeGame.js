@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LeftCards from '../containers/LeftCards'
+import { fetchCards } from '../actions/index'
 
 class WholeGame extends Component {
 
   constructor() {
     super()
+    console.log("check props", this.props)
     // this.state = this.props.game
     this.state = {
       tokens: this.initializeTokens(),
+      cards: [],
       turn: 1,
       over: false,
       header: ""
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchCards(1)
+    this.setState({
+        tokens: this.state.tokens,
+        cards: this.props.apiInfo.cards,
+        turn: this.state.turn,
+        over: false,
+        header: "GAME READY!"
+    })
   }
 
   initializeTokens() {
@@ -50,7 +64,7 @@ class WholeGame extends Component {
 
     tryAgain(){
         this.setState({
-            tokens: this.state,
+            tokens: this.state.tokens,
             turn: this.state.turn,
             over: false,
             header: "INVALID MOVE, TRY AGAIN!!"
@@ -186,21 +200,32 @@ class WholeGame extends Component {
   render() {
     return (
       <div>
-        <h1>{this.state.header}</h1>
-        <LeftCards cards={ [] } />
-        <div id="game-board">
-            <table id="game-board-table">
-                <tbody>
-                    <tr className="token-row">{ this.generateRow(this.state.tokens[5]) }</tr>
-                    <tr className="token-row">{ this.generateRow(this.state.tokens[4]) }</tr>
-                    <tr className="token-row">{ this.generateRow(this.state.tokens[3]) }</tr>
-                    <tr className="token-row">{ this.generateRow(this.state.tokens[2]) }</tr>
-                    <tr className="token-row">{ this.generateRow(this.state.tokens[1]) }</tr>
-                    <tr className="token-row">{ this.generateRow(this.state.tokens[0]) }</tr>
-                    <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
-                </tbody>
-            </table>
+        
+        <div class="col s3">
+            <LeftCards cards={ this.state.cards } />
         </div>
+
+        <div class="col s6">
+            <h2 class="center">{this.state.header}</h2>
+            <div id="game-board" class="col s6">
+                <table id="game-board-table" class="center">
+                    <tbody>
+                        <tr className="token-row">{ this.generateRow(this.state.tokens[5]) }</tr>
+                        <tr className="token-row">{ this.generateRow(this.state.tokens[4]) }</tr>
+                        <tr className="token-row">{ this.generateRow(this.state.tokens[3]) }</tr>
+                        <tr className="token-row">{ this.generateRow(this.state.tokens[2]) }</tr>
+                        <tr className="token-row">{ this.generateRow(this.state.tokens[1]) }</tr>
+                        <tr className="token-row">{ this.generateRow(this.state.tokens[0]) }</tr>
+                        <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col s3">
+
+        </div>
+
       </div>
     )
   }
@@ -225,5 +250,5 @@ const mapStateToProps = state => {
     }
 }
   
-export default connect(mapStateToProps)(WholeGame)
+export default connect(mapStateToProps, { fetchCards })(WholeGame)
 // export default WholeGame
