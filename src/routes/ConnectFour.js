@@ -89,8 +89,15 @@ class ConnectFour extends Component {
 
     makeMove = (matrix, rowNum, colNum) => {
         matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />  
-        this.executeMove(matrix)
-        this.checkWinner({row: rowNum, col: colNum})
+        this.setState({
+            cards: this.state.cards,
+            leftCards: this.state.leftCards,
+            rightCards: this.state.rightCards,
+            tokens: matrix,
+            turn: this.state.turn += 1,
+            over: false,
+            header: this.state.header
+        })
     }
 
     handleClick = (index) => {
