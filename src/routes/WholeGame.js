@@ -6,8 +6,6 @@ class WholeGame extends Component {
 
   constructor() {
     super()
-    console.log("check props", this.props)
-    // this.state = this.props.game
     this.state = {
       tokens: this.initializeTokens(),
       cards: this.generateCards(),
@@ -66,8 +64,9 @@ class WholeGame extends Component {
       return array
   }
 
-  shuffleAndDeal(){
-      let shuffled = this.shuffle(this.state.cards)
+  shuffleAndDeal(arr){
+      console.log(arr)
+      let shuffled = this.shuffle(arr)
       this.setState({
         tokens: this.state.tokens,
         cards: shuffled,
@@ -234,6 +233,12 @@ class WholeGame extends Component {
         this.checkHorizontals(index)
         this.checkDiagonalRight(index)
         this.checkDiagonalLeft(index)
+        if (this.state.over === false){
+            console.log(this.state.cards[index.col])
+            let arr = this.state.cards
+            arr.splice(index.col, 1)
+            this.shuffleAndDeal(arr)
+        }
     }
 
   render() {
