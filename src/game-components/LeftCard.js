@@ -1,3 +1,5 @@
+import React from 'react-redux'
+
 const LeftCard = ({ info, number }) => {
     return (
       <div className="quiz-card">

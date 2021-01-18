@@ -47,18 +47,18 @@ class ConnectFour extends Component {
         return nestedArray
       }
     
-      generateRow = (tokenArray) => {
-        let cells = tokenArray.map(token => <td className="cell">{ token }</td>)
-        return cells.map(cell => cell)
-      }
+    //   generateRow = (tokenArray) => {
+    //     let cells = tokenArray.map(token => <td className="cell">{ token }</td>)
+    //     return cells.map(cell => cell)
+    //   }
     
-      createButtons = () => {
-        let buttons = []
-        for (let i = 0; i < 7; i++){
-            buttons.push(<TokenButton number={i + 1} />)
-        }
-        return buttons.map(map => map)
-      }
+    //   createButtons = () => {
+    //     let buttons = []
+    //     for (let i = 0; i < 7; i++){
+    //         buttons.push(<TokenButton number={i + 1} />)
+    //     }
+    //     return buttons.map(map => map)
+    //   }
     
       generateCards(){
           let array = []
@@ -137,36 +137,36 @@ class ConnectFour extends Component {
       }
 }
     
-    const Token = ({ row, column, color }) => {
-        return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
-    }
+    // const Token = ({ row, column, color }) => {
+    //     return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
+    // }
     
-    const TokenButton = ({ number }) => {
-        return (
-          <div className="token-button">
-            <div className="button-number">{ number }</div>
-          </div>
-        )
-    }
+    // const TokenButton = ({ number }) => {
+    //     return (
+    //       <div className="token-button">
+    //         <div className="button-number">{ number }</div>
+    //       </div>
+    //     )
+    // }
     
-    const LeftCard = ({ info, number }) => {
-        return (
-          <div className="quiz-card">
-            <div class="left number">{ number + 1 }</div>
-            <div class="center">{ info.side_a }</div>
-          </div>
-        )
-    }
+    // const LeftCard = ({ info, number }) => {
+    //     return (
+    //       <div className="quiz-card">
+    //         <div class="left number">{ number + 1 }</div>
+    //         <div class="center">{ info.side_a }</div>
+    //       </div>
+    //     )
+    // }
     
-    const RightCard = ({ info, handleClick }) => {
-        return (
-          <div className="quiz-card" onClick={handleClick}>
-            <div class="center">
-                { info.side_b }
-            </div>
-          </div>
-        )
-    }
+    // const RightCard = ({ info, handleClick }) => {
+    //     return (
+    //       <div className="quiz-card" onClick={handleClick}>
+    //         <div class="center">
+    //             { info.side_b }
+    //         </div>
+    //       </div>
+    //     )
+    // }
     
     const mapStateToProps = state => {
         return {
