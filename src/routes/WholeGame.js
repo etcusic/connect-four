@@ -12,18 +12,22 @@ class WholeGame extends Component {
     this.state = {
       tokens: this.initializeTokens(),
       cards: this.generateCards(),
+      leftCards: [],
+      rightCards: [],
       turn: 1,
       over: false,
-      firstSeven: this.generateCards(),
       header: ""
     }
   }
 
   componentDidMount() {
     this.props.fetchCards(1)
+    let shuffled = this.shuffle(this.props.apiInfo.cards)
     this.setState({
         tokens: this.state.tokens,
-        cards: this.props.apiInfo.cards,
+        cards: shuffled,
+        leftCards: this.generateLeftCards(shuffled.slice(0,7)),
+        rightCards: this.generateRightCards(shuffled.slice(0,7)),
         turn: this.state.turn,
         over: false,
         header: "GAME READY!"
@@ -49,11 +53,24 @@ class WholeGame extends Component {
 
   generateCards(){
       let array = []
-      let info = {side_a: "A", side_b: "B"}
       for (let i = 0; i < 7; i++) {
-        array.push(<Card info={ info } />)
+        array.push({side_a: "", side_b: ""})
       }
       return array
+  }
+
+  generateLeftCards(arr){
+    let shuffled = this.shuffle(arr)
+    return shuffled.map((card, index) => <LeftCard info={card} number={index} />)
+  }
+
+  generateRightCards(arr){
+    let shuffled = this.shuffle(arr)
+    return shuffled.map(card => <RightCard info={card} />)
+  }
+  
+  shuffle (arrayOfCards) {
+    return arrayOfCards.sort(() => Math.random() - 0.5)
   }
 
   handleClick = (index) => {
@@ -212,7 +229,7 @@ class WholeGame extends Component {
       <div class="row">
         
         <div class="col s2">
-            { this.state.firstSeven.map(card => card) }
+            { this.state.leftCards.map(card => card) }
         </div>
 
         <div class="col s8">
@@ -233,7 +250,7 @@ class WholeGame extends Component {
         </div>
 
         <div class="col s2">
-            { this.state.firstSeven.map(card => card) }
+            { this.state.rightCards.map(card => card) }
         </div>
 
       </div>
@@ -253,10 +270,21 @@ const TokenButton = ({ number, handleClick }) => {
     )
 }
 
-const Card = ({ info }) => {
+const LeftCard = ({ info, number }) => {
     return (
       <div className="quiz-card">
-        { info.side_a }
+        <div class="left">{ number }</div>
+        <div class="extra-center">{ info.side_a }</div>
+      </div>
+    )
+}
+
+const RightCard = ({ info }) => {
+    return (
+      <div className="quiz-card">
+        <div class="extra-center">
+            { info.side_b }
+        </div>
       </div>
     )
 }
