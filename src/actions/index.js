@@ -8,6 +8,17 @@ export const fetchDecks = () => {
     }
 }
 
+export const fetchConnectFourLogs = () => {
+    return(dispatch) => {
+        return fetch('http://localhost:3001/connect_four_logs') 
+        .then(resp =>  resp.json())
+        .then(gameLogs => {
+            dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
+        })
+    }
+}
+
+// where is this going???
 export const fetchCards = (id) => {
     return(dispatch) => {
         return fetch(`http://localhost:3001/decks/${id}/cards`)

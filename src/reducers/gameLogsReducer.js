@@ -1,6 +1,6 @@
 const gameLogsReducer = (state = [], action) => {
     switch(action.type){
-        case "SET_GAME_LOGS": 
+        case "LOAD_CONNECT_FOUR_LOGS": 
             let gameLogs = action.payload
             return gameLogs
 

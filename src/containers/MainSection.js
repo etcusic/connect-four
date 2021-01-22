@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import HomeCard from '../components/HomeCard'
 
-export class MainContainer extends Component {
+export class MainSection extends Component {
   
   render() {
     return (
-      <div class="col s10">
+      <section class="col s10">
         <HomeCard />
-      </div>
+      </section>
     )
   }
 }
 
-export default MainContainer
+export default MainSection
