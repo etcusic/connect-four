@@ -1,6 +1,6 @@
-const deckReducer = (state = [], action) => {
+const decksReducer = (state = [], action) => {
     switch(action.type){
-        case "SET_DECKS": 
+        case "LOAD_DECKS": 
             let decks = action.payload
             return decks
 
@@ -9,4 +9,4 @@ const deckReducer = (state = [], action) => {
     }
 }
 
-export default deckReducer
+export default decksReducer

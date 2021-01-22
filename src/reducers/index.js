@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import user from './userReducer'
-import deck from './deckReducer'
-import game from './gameReducer'
+import decks from './decksReducer'
 import gameLogs from './gameLogsReducer'
 // import apiInfo from './apiReducer'
 // import session from './sessionReducer'
@@ -9,5 +8,5 @@ import gameLogs from './gameLogsReducer'
 
 export default combineReducers({
     // view, apiInfo, session, game
-    user, deck, gameLogs
+    user, decks, gameLogs
 })

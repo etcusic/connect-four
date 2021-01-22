@@ -6,7 +6,7 @@ import GameSelector from '../components/GameSelector'
 export class SidePanel extends Component {
 
   componentDidMount(){
-    
+
   }
 
     example = () => {
@@ -22,6 +22,7 @@ export class SidePanel extends Component {
       <aside id="side-panel" class="col s2 dark-green">
         { console.log(this.props) }
         <ProfilePic image={ this.props.user.image } />
+        <DeckSelector decks={ this.props.decks }/>
         {/* <DeckSelector decks={ this.props.decks } fetchCards={this.props.fetchCards} /> */}
         {/* <GameSelector games={ this.example() } /> */}
         <div class="white-text">
