@@ -4,7 +4,7 @@ const defaultUser = {
     image:"/photos/gonzo_thegreat.jpg"
 }
 
-const userReducer = (state = {}, action) => {
+const userReducer = (state = defaultUser, action) => {
     switch(action.type){
         case "SET_USER": 
             let user = action.payload

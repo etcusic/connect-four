@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import ProfilePic from '../components/ProfilePic'
 import DeckSelector from '../components/DeckSelector'
 import GameSelector from '../components/GameSelector'
-import GoToGameButton from '../components/GoToGameButton'
 
 export class SidePanel extends Component {
+
+  componentDidMount(){
+    
+  }
 
     example = () => {
         return [
@@ -16,13 +19,15 @@ export class SidePanel extends Component {
   
   render() {
     return (
-      <div id="side-panel" class="col s2 dark-green">
-      { console.log(this.props) }
-        <ProfilePic image={ this.props.session.image } />
-        <DeckSelector decks={ this.props.decks } fetchCards={this.props.fetchCards} />
-        <GameSelector games={ this.example() } />
-        <GoToGameButton cards={this.props.cards} initializeGame={this.props.initializeGame} />
-      </div>
+      <aside id="side-panel" class="col s2 dark-green">
+        { console.log(this.props) }
+        <ProfilePic image={ this.props.user.image } />
+        {/* <DeckSelector decks={ this.props.decks } fetchCards={this.props.fetchCards} /> */}
+        {/* <GameSelector games={ this.example() } /> */}
+        <div class="white-text">
+          This is currently in place until I apply a user sign in feature to the application.
+        </div>
+      </aside>
     )
   }
 }

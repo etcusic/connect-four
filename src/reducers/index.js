@@ -9,5 +9,5 @@ import gameLogs from './gameLogsReducer'
 
 export default combineReducers({
     // view, apiInfo, session, game
-    user, deck, gameLogs, game
+    user, deck, gameLogs
 })
