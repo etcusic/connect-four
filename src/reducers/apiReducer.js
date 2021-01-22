@@ -3,6 +3,7 @@ const apiReducer = (state = {}, action) => {
     switch(action.type){
         case "LOAD_MUPPETS": 
             apiInfo.muppets = action.payload
+            console.log(apiInfo )
             return apiInfo
 
         case "LOAD_DECKS":

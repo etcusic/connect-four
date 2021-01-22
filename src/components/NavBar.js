@@ -6,8 +6,7 @@ export class NavBar extends Component {
   render() {
     return (
       <nav  class="light-blue lighten-2">
-        <NavLink to="/">-- Landing Page -</NavLink>
-        <NavLink to="/home">- Home Page -</NavLink>
+        <NavLink to="/">-- Home Page -</NavLink>
         <NavLink to="/game">- Game Page -</NavLink>
         <NavLink to="/scores">- Scores Page --</NavLink>
       </nav>

@@ -6,12 +6,11 @@ import { fetchCards } from '../actions/index'
 import { fetchGameLogs } from '../actions/index'
 import { fetchConnectFourLogs } from '../actions/index'
 import { initializeSession } from '../actions/index'
-import { MuppetsList } from '../containers/MuppetsList.js'
-import { Beaker } from '../containers/Beaker.js'
+import { MuppetsList } from './MuppetsList.js'
+import { Beaker } from './Beaker.js'
 
 export class LandingPage extends Component {
 
-  // need to figure out a way to handle these view changes without setting state here - maybe in the Redux store?
   constructor () {
     super()
     this.state = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import GameBoard from './GameBoard'
-import CardPanel from './CardPanel'
+import GameBoard from '../containers/GameBoard'
+import CardPanel from '../containers/CardPanel'
 import Token from '../components/Token'
 import TokenButton from '../components/TokenButton'
 import { connect } from 'react-redux'
