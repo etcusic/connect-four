@@ -10,7 +10,7 @@ export class HomePage extends Component {
   // currently don't need this, but it may come in handy later
   componentDidMount(){
     this.props.fetchDecks()
-    this.props.fetchConnectFourLogs()
+    // this.props.fetchConnectFourLogs()
   }
   
   render() {
