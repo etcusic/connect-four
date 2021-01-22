@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PlaceHolder from '../components/PlaceHolder'
+import DeckSelector from '../components/DeckSelector'
 
 export class GamePage extends Component {
 
     constructor(){
         super()
-        state = {
-            view: <DeckSelector changeView={ this.changeView }/>
+        this.state = {
+            view: <PlaceHolder />
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            view: <DeckSelector decks={ this.props.decks } changeView={ this.changeView }/>
+        })
     }
 
     changeView = () => {
         console.log("changed view, yay!")
-
+        this.setState({
+            view: <PlaceHolder />
+        })
     }
 
     render(){
