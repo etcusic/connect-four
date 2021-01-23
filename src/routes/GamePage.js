@@ -4,6 +4,7 @@ import { fetchCards } from '../actions/index'
 import PlaceHolder from '../components/PlaceHolder'
 import DeckSelector from '../components/DeckSelector'
 import NewGame from '../containers/NewGame'
+import WholeGame from '../routes/WholeGame'
 
 export class GamePage extends Component {
 
@@ -25,6 +26,7 @@ export class GamePage extends Component {
         this.props.fetchCards(index)
         this.setState({
             view: <NewGame />
+            // view: <WholeGame />
         })
     }
 

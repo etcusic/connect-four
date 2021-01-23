@@ -18,8 +18,10 @@ class WholeGame extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCards(1)
-    let shuffled = this.shuffle(this.props.apiInfo.cards)
+    console.log(this.props)
+    // this.props.fetchCards(1)
+    // let shuffled = this.shuffle(this.props.apiInfo.cards)
+    let shuffled = this.shuffle(this.props.cards)
     this.setState({
         tokens: this.state.tokens,
         cards: shuffled,
@@ -329,13 +331,20 @@ const RightCard = ({ info, handleClick }) => {
     )
 }
 
+// const mapStateToProps = state => {
+//     return {
+//       apiInfo: state.apiInfo,
+//       session: state.session,
+//       game: state.game
+//     }
+// }
+
 const mapStateToProps = state => {
-    return {
-      apiInfo: state.apiInfo,
-      session: state.session,
-      game: state.game
-    }
+  return {
+    cards: state.currentDeckOfCards
+  }
 }
-  
-export default connect(mapStateToProps, { fetchCards })(WholeGame)
+
+export default connect(mapStateToProps)(WholeGame)
+// export default connect(mapStateToProps, { fetchCards })(WholeGame)
 // export default WholeGame

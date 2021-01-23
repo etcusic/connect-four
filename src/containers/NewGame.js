@@ -5,6 +5,7 @@ export class NewGame extends Component {
 
     constructor(){
         super()
+        // initialize tokens here
         this.state = {
             tokens: [],
             cards: [],
@@ -15,6 +16,7 @@ export class NewGame extends Component {
     }
 
     componentDidMount(){
+        // shuffle cards
         this.setState({
             tokens: [],
             cards: this.props.cards,
