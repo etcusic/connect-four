@@ -6,7 +6,7 @@ const DeckSelector = ({ decks, changeView }) => {
             { console.log(decks) }
             <div class="selector-title">Select Deck:</div>
             <ul class="collection">
-                { decks.map(deck => <li class="collection-item" onClick={ changeView } >{ deck.title }</li>)}
+                { decks.map((deck, index) => <li class="collection-item" onClick={() => changeView(index) } >{ deck.title }</li>)}
             </ul>
       </div>
     )

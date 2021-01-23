@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchCards } from '../actions/index'
 import PlaceHolder from '../components/PlaceHolder'
 import DeckSelector from '../components/DeckSelector'
+import NewGame from '../containers/NewGame'
 
 export class GamePage extends Component {
 
@@ -18,10 +20,11 @@ export class GamePage extends Component {
         })
     }
 
-    changeView = () => {
+    changeView = (index) => {
         console.log("changed view, yay!")
+        this.props.fetchCards(index)
         this.setState({
-            view: <PlaceHolder />
+            view: <NewGame />
         })
     }
 
@@ -41,4 +44,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(GamePage)
+export default connect(mapStateToProps, { fetchCards })(GamePage)
