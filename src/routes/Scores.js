@@ -6,7 +6,7 @@ import { fetchConnectFourLogs } from '../actions/index'
 export class Scores extends Component {
 
   componentDidMount(){
-    this.props.fetchConnectFourLogs()
+    this.props.fetchConnectFourLogs(this.props.userID)
   }
 
   render() {

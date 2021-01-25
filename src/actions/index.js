@@ -8,9 +8,11 @@ export const fetchDecks = () => {
     }
 }
 
-export const fetchConnectFourLogs = () => {
+// currently scoped out by user
+export const fetchConnectFourLogs = (id) => {
+    // OPTIONAL ADDITION: if (id) => scoped out route; else => index all game logs
     return(dispatch) => {
-        return fetch('http://localhost:3001/connect_four_logs') 
+        return fetch(`http://localhost:3001/users/${id}/connect_four_logs`) 
         .then(resp =>  resp.json())
         .then(gameLogs => {
             dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
@@ -18,7 +20,6 @@ export const fetchConnectFourLogs = () => {
     }
 }
 
-// where is this going???
 export const fetchCards = (id) => {
     return(dispatch) => {
         return fetch(`http://localhost:3001/decks/${id}/cards`)

@@ -13,7 +13,7 @@ export class SidePanel extends Component {
         {/* <DeckSelector decks={ this.props.decks }/> */}
         {/* <DeckSelector decks={ this.props.decks } fetchCards={this.props.fetchCards} /> */}
         <div class="white-text">
-          This is currently in place until I apply a user sign in feature to the application.
+          This is here until I add a user sign in feature to the application.
         </div>
       </aside>
     )
