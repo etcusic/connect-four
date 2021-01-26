@@ -28,8 +28,9 @@ export class NewGame extends Component {
 
     render(){
         return (
-            <div>
-                <div>{console.log(this.state.cards)}</div>
+            <div class="row">
+                Wassup, changed the view.
+                {console.log(this.state)}
             </div>
         )
     }

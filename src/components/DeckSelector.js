@@ -2,13 +2,13 @@ import React from 'react'
 
 const DeckSelector = ({ decks, changeView }) => {
     return (
-        <div>
-            { console.log(decks) }
-            <div class="selector-title">Select Deck:</div>
+        <div class="absolute-center">
             <ul class="collection">
-                { decks.map((deck, index) => <li class="collection-item" onClick={() => changeView(index) } >{ deck.title }</li>)}
+                <li class="collection-item">Select Deck:</li>
+                { decks.map((deck, index) => <li class="collection-item" onClick={() => changeView(index + 1) } >{ deck.title }</li>)}
             </ul>
-      </div>
+        </div>
+        
     )
 }
 
