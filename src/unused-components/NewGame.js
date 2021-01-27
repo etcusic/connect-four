@@ -3,21 +3,11 @@ import { connect } from 'react-redux'
 
 export class NewGame extends Component {
 
-    constructor(){
-        super()
-        console.log(this.props)
-        // initialize tokens here
-        this.state = {
-            tokens: [],
-            cards: [],
-            turn: 0,
-            over: false,
-            header: "GAME READY!"
-        }
-    }
-
     componentDidMount(){
+        // initialize game here
+        let cards = this.shuffle(this.props.cards)
         // shuffle cards
+        console.log(this.props)
         this.setState({
             tokens: [],
             cards: this.props.cards,
@@ -26,18 +16,23 @@ export class NewGame extends Component {
             header: "GAME READY!"
         })
     }
-
+ 
+    shuffle (arrayOfCards) {
+        return arrayOfCards.sort(() => Math.random() - 0.5)
+    }
+    
     render() {
         return (
+         
           <div class="row">
-            
+            {  console.log(this.state)} 
             <section class="col s2">
                 {/* <LeftCards cards={ this.state.leftCards } /> */}
             </section>
     
             <section class="col s8">
                 <div id="game-header">
-                <h1>Changed the view, yo!</h1>
+                    <h1 class="center">Changed the view, yo!</h1>
                     {/* <GameHeader header={ this.state.header } /> */}
                 </div>
                 
@@ -47,7 +42,7 @@ export class NewGame extends Component {
             </section>
     
             <section class="col s2">
-            {/* <RightCards cards={ this.state.rightCards } /> */}
+                {/* <RightCards cards={ this.state.rightCards } /> */}
             </section>
     
           </div>

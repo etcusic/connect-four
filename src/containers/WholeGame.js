@@ -19,8 +19,6 @@ class WholeGame extends Component {
 
   componentDidMount() {
     console.log(this.props)
-    // this.props.fetchCards(1)
-    // let shuffled = this.shuffle(this.props.apiInfo.cards)
     let shuffled = this.shuffle(this.props.cards)
     this.setState({
         tokens: this.state.tokens,

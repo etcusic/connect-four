@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { fetchCards } from '../actions/index'
 import PlaceHolder from '../components/PlaceHolder'
 import DeckSelector from '../components/DeckSelector'
-import NewGame from '../containers/NewGame'
-import WholeGame from '../routes/WholeGame'
+import WholeGame from '../containers/WholeGame'
 
 export class GamePage extends Component {
 
@@ -24,10 +23,9 @@ export class GamePage extends Component {
     changeView = (deckId) => {
         console.log("changed view, yay!")
         this.props.fetchCards(deckId)
-        // initialize game here??
         this.setState({
-            view: <NewGame />
-            // view: <WholeGame />
+            // view: <NewGame />
+            view: <WholeGame />
         })
     }
 
