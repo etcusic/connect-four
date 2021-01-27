@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import { fetchCards } from '../actions/index'
 import Token from '../components/Token'
+import TokenButton from '../components/TokenButton'
+import LeftCard from '../components/LeftCard'
+import RightCard from '../components/RightCard'
 
 class WholeGame extends Component {
 
@@ -117,7 +120,7 @@ class WholeGame extends Component {
     executeMove(matrix){
         this.setState({
             tokens: matrix,
-            turn: this.state.turn += 1,
+            turn: this.state.turn + 1,
             over: false,
             header: this.state.header
         })
@@ -297,37 +300,6 @@ class WholeGame extends Component {
   }
 }
 
-// const Token = ({ row, column, color }) => {
-//     return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
-// }
-
-const TokenButton = ({ number }) => {
-    return (
-      <div className="token-button" key={`button-${number}`}>
-        <div className="button-number">{ number }</div>
-      </div>
-    )
-}
-
-const LeftCard = ({ info, number }) => {
-    return (
-      <div className="quiz-card" key={`left-card-${number}`}>
-        <div className="left number" key={number.toString()}>{ number + 1 }</div>
-        <div className="center">{ info.side_a }</div>
-      </div>
-    )
-}
-
-const RightCard = ({ index, info, handleClick }) => {
-    return (
-      <div className="quiz-card" key={`right-card-${index + 1}`} onClick={handleClick}>
-        <div className="center">
-            { info.side_b }
-        </div>
-      </div>
-    )
-}
-
 const mapStateToProps = state => {
   return {
     cards: state.currentDeckOfCards
@@ -336,4 +308,3 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(WholeGame)
 // export default connect(mapStateToProps, { fetchCards })(WholeGame)
-// export default WholeGame
