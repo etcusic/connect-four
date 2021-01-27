@@ -24,6 +24,7 @@ export class GamePage extends Component {
     changeView = (deckId) => {
         console.log("changed view, yay!")
         this.props.fetchCards(deckId)
+        // initialize game here??
         this.setState({
             view: <NewGame />
             // view: <WholeGame />
