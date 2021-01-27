@@ -8,9 +8,9 @@ import { fetchConnectFourLogs } from '../actions/index'
 export class HomePage extends Component {
 
   componentDidMount(){
-    console.log("home page did mount - fetchDecks")
-    // this will run every time home page is accessed - better place to put it?
-    this.props.fetchDecks()
+    if (this.props.decks.length === 0){
+      this.props.fetchDecks()
+    }
   }
   
   render() {

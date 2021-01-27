@@ -45,7 +45,7 @@ class WholeGame extends Component {
   }
 
   generateRow = (tokenArray) => {
-    let cells = tokenArray.map(token => <td className="cell">{ token }</td>)
+    let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
     return cells.map(cell => cell)
   }
 

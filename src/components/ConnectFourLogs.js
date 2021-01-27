@@ -2,9 +2,9 @@ import React from 'react'
 
 const ConnectFourLogs = ({ logs }) => {
     
-    const tableCells = logs.map( log => {
+    const tableCells = logs.map( (log, i) => {
         return (
-            <tr>
+            <tr key={ `gamelog-${i + 1}` }>
                 <td>{log.user}</td>
                 <td>{log.deck}</td>
                 <td>{log.time} seconds</td>
@@ -26,7 +26,7 @@ const ConnectFourLogs = ({ logs }) => {
                 </thead>
 
                 <tbody id="high-scores-table">      
-                    { tableCells.map(cell => cell)}
+                    { tableCells.map(cell => cell) }
                 </tbody>
             </table>
         </div>
