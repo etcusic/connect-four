@@ -83,7 +83,7 @@ class WholeGame extends Component {
   }
 
   generateRightCards(arr){
-    let rightCards = arr.map((card, index) => <RightCard info={card} handleClick={() => this.handleClick(index)} />)
+    let rightCards = arr.map((card, index) => <RightCard index={index} info={card} handleClick={() => this.handleClick(index)} />)
     let shuffled = this.shuffle(rightCards)
     return shuffled
   }
@@ -135,13 +135,11 @@ class WholeGame extends Component {
             matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "red" } />
             this.executeMove(matrix)
             this.checkWinner({row: rowNum, col: colNum})
-
         }
-        
     }
 
     currentToken(index){
-        return this.state.tokens[index. row][index.col]
+        return this.state.tokens[index.row][index.col]
     }
 
     fourInaRow(array, currentT){
@@ -267,16 +265,16 @@ class WholeGame extends Component {
 
   render() {
     return (
-      <div class="row">
+      <div className="row">
         
-        <div class="col s2">
+        <div className="col s2">
             { this.state.leftCards.map(card => card) }
         </div>
 
-        <div class="col s8">
-            <h2 class="center">{this.state.header}</h2>
-            <div id="game-board" class="col s12">
-                <table id="game-board-table" class="center">
+        <div className="col s8">
+            <h2 className="center">{this.state.header}</h2>
+            <div id="game-board" className="col s12">
+                <table id="game-board-table" className="center">
                     <tbody>
                         <tr className="token-row">{ this.generateRow(this.state.tokens[5]) }</tr>
                         <tr className="token-row">{ this.generateRow(this.state.tokens[4]) }</tr>
@@ -290,7 +288,7 @@ class WholeGame extends Component {
             </div>
         </div>
 
-        <div class="col s2">
+        <div className="col s2">
             { this.state.rightCards.map(card => card) }
         </div>
 
@@ -305,7 +303,7 @@ class WholeGame extends Component {
 
 const TokenButton = ({ number }) => {
     return (
-      <div className="token-button">
+      <div className="token-button" key={`button-${number}`}>
         <div className="button-number">{ number }</div>
       </div>
     )
@@ -313,17 +311,17 @@ const TokenButton = ({ number }) => {
 
 const LeftCard = ({ info, number }) => {
     return (
-      <div className="quiz-card">
-        <div class="left number">{ number + 1 }</div>
-        <div class="center">{ info.side_a }</div>
+      <div className="quiz-card" key={`left-card-${number}`}>
+        <div className="left number" key={number.toString()}>{ number + 1 }</div>
+        <div className="center">{ info.side_a }</div>
       </div>
     )
 }
 
-const RightCard = ({ info, handleClick }) => {
+const RightCard = ({ index, info, handleClick }) => {
     return (
-      <div className="quiz-card" onClick={handleClick}>
-        <div class="center">
+      <div className="quiz-card" key={`right-card-${index + 1}`} onClick={handleClick}>
+        <div className="center">
             { info.side_b }
         </div>
       </div>

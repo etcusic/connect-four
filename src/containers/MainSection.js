@@ -5,7 +5,7 @@ export class MainSection extends Component {
   
   render() {
     return (
-      <section class="col s10">
+      <section className="col s10">
         <HomeCard />
       </section>
     )

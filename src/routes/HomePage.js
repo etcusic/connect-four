@@ -15,7 +15,7 @@ export class HomePage extends Component {
   
   render() {
     return (
-      <div class="row">
+      <div className="row">
         <SidePanel user={ this.props.user } decks={ this.props.decks } />
         <MainSection />
       </div>
