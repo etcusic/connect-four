@@ -300,11 +300,12 @@ class WholeGame extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cards: state.currentDeckOfCards
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     cards: state.currentDeckOfCards
+//   }
+// }
 
-export default connect(mapStateToProps)(WholeGame)
+export default WholeGame
+// export default connect(mapStateToProps)(WholeGame)
 // export default connect(mapStateToProps, { fetchCards })(WholeGame)

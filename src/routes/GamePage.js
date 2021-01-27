@@ -22,11 +22,13 @@ export class GamePage extends Component {
     }
 
     changeView = (deckId) => {
-        console.log("changed view, yay!")
-        this.props.fetchCards(deckId)
-        this.setState({
-            // view: <NewGame />
-            view: <WholeGame />
+        fetch(`http://localhost:3001/decks/${deckId}/cards`)
+        .then(resp =>  resp.json())
+        .then(cards => {
+            this.setState({
+                // view: <NewGame />
+                view: <WholeGame cards={cards} />
+            })
         })
     }
 
