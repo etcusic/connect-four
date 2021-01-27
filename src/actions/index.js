@@ -1,3 +1,13 @@
+export const fetchMuppets = () => {
+    return(dispatch) => {
+        return fetch('http://localhost:3001/users')
+        .then(resp =>  resp.json())
+        .then(muppets => {
+            dispatch({ type: "LOAD_MUPPETS", payload: muppets })
+        })
+    }
+}
+
 export const fetchDecks = () => {
     return(dispatch) => {
         return fetch('http://localhost:3001/decks')
@@ -16,16 +26,6 @@ export const fetchConnectFourLogs = (id) => {
         .then(resp =>  resp.json())
         .then(gameLogs => {
             dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
-        })
-    }
-}
-
-export const fetchCards = (id) => {
-    return(dispatch) => {
-        return fetch(`http://localhost:3001/decks/${id}/cards`)
-        .then(resp =>  resp.json())
-        .then(cards => {    
-            dispatch({ type: "LOAD_CARDS", payload: cards })
         })
     }
 }

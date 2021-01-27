@@ -1,5 +1,5 @@
-import LandingPage from '../unused-components/LandingPage'
-import Beaker from '../unused-components/Beaker'
+import LandingPage from './LandingPage'
+import Beaker from './Beaker'
 
 const page = LandingPage
 // const page = Beaker
