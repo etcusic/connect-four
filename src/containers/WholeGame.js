@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCards } from '../actions/index'
+// import { fetchCards } from '../actions/index'
+import Token from '../components/Token'
 
 class WholeGame extends Component {
 
@@ -298,9 +299,9 @@ class WholeGame extends Component {
   }
 }
 
-const Token = ({ row, column, color }) => {
-    return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
-}
+// const Token = ({ row, column, color }) => {
+//     return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
+// }
 
 const TokenButton = ({ number }) => {
     return (
@@ -328,14 +329,6 @@ const RightCard = ({ info, handleClick }) => {
       </div>
     )
 }
-
-// const mapStateToProps = state => {
-//     return {
-//       apiInfo: state.apiInfo,
-//       session: state.session,
-//       game: state.game
-//     }
-// }
 
 const mapStateToProps = state => {
   return {

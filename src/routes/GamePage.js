@@ -15,6 +15,7 @@ export class GamePage extends Component {
     }
 
     componentDidMount(){
+        console.log("game page did mount")
         this.setState({
             view: <DeckSelector decks={ this.props.decks } changeView={ this.changeView }/>
         })

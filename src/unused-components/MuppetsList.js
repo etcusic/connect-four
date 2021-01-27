@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MuppetLi from '../components/MuppetLi'
+import MuppetLi from './MuppetLi'
 
 export class MuppetsList extends Component {
 

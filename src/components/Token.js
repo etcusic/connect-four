@@ -1,28 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Token extends Component {
-
-  constructor(props){
-    super()
-    this.state = {
-      color: props.color
-    }
-  }
-
-
-
-  render() {
-    return (
-      <div 
-        className="token" 
-        style={{backgroundColor: `${this.state.color}`}}
-      ></div>
-    )
-  }
-
+const Token = ({ row, column, color }) => {
+  return <div id={`${row}-${column}`} className="token" style={{backgroundColor: `${color}`}}></div>  
 }
-// const Token = ({ row, column, color }) => {
-//   return <div className="token" style={{backgroundColor: `${color}`}}></div>
-// }
 
 export default Token
