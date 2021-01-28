@@ -7,7 +7,7 @@ const DeckSelector = ({ decks, changeView }) => {
         <div className="absolute-center">
             <ul id="deck-selector" className="collection">
                 <li className="collection-item yellow darken-2">Select Deck:</li>
-                { decks.map((deck, index) => <li className="collection-item yellow darken-2" key={ `deck-${index + 1}` } onClick={() => changeView(index + 1) } >{ deck.title }</li>)}
+                { decks.map((deck, index) => <li className="collection-item yellow darken-2" key={ `deck-${index + 1}` } onClick={() => changeView(deck) } >{ deck.title }</li>)}
             </ul>
         </div>
     )

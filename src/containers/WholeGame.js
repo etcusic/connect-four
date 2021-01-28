@@ -20,211 +20,216 @@ class WholeGame extends Component {
     }
   }
 
-    initializeGame = () => {
-      this.shuffleAndDeal(this.props.cards)
-    }
+  initializeGame = () => {
+    this.shuffleAndDeal(this.props.cards)
+  }
 
-    initializeTokens() {
-      let nestedArray = []
-      for (let i = 0; i < 6; i++) {
-        let rowArray = []
-        for (let j = 0; j < 7; j++) {
-          rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } />)
-        }
-        nestedArray.push(rowArray)  
+  initializeTokens() {
+    let nestedArray = []
+    for (let i = 0; i < 6; i++) {
+      let rowArray = []
+      for (let j = 0; j < 7; j++) {
+        rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } />)
       }
-      return nestedArray
+      nestedArray.push(rowArray)  
     }
+    return nestedArray
+  }
 
-    generateRow = (tokenArray) => {
-      let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
-      return cells.map(cell => cell)
-    }
+  generateRow = (tokenArray) => {
+    let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
+    return cells.map(cell => cell)
+  }
 
-    generateCards(){
-        let array = []
-        for (let i = 0; i < 7; i++) {
-          array.push({side_a: "", side_b: ""})
-        }
-        return array
-    }
-    
-    shuffle (arrayOfCards) {
-      return arrayOfCards.sort(() => Math.random() - 0.5)
-    }
+  generateCards(){
+      let array = []
+      for (let i = 0; i < 7; i++) {
+        array.push({side_a: "", side_b: ""})
+      }
+      return array
+  }
+  
+  shuffle (arrayOfCards) {
+    return arrayOfCards.sort(() => Math.random() - 0.5)
+  }
 
-    shuffleAndDeal(arr){
-        let shuffled = this.shuffle(arr)
-        this.setState({
-          tokens: this.state.tokens,
-          cards: shuffled,
-          leftCards: this.generateLeftCards(shuffled.slice(0,7)),
-          rightCards: this.generateRightCards(shuffled.slice(0,7)),
-          turn: this.state.turn + 1,
-          header: "YOUR TURN"
-      })       
-    }
+  shuffleAndDeal(arr){
+      let shuffled = this.shuffle(arr)
+      this.setState({
+        tokens: this.state.tokens,
+        cards: shuffled,
+        leftCards: this.generateLeftCards(shuffled.slice(0,7)),
+        rightCards: this.generateRightCards(shuffled.slice(0,7)),
+        turn: this.state.turn,
+        header: this.props.deck.title
+    })       
+  }
 
-    generateLeftCards(arr){
-      return arr.map((card, index) => <LeftCard info={card} number={index} />)
-    }
+  generateLeftCards(arr){
+    return arr.map((card, index) => <LeftCard info={card} number={index} />)
+  }
 
-    generateRightCards(arr){
-      let rightCards = arr.map((card, index) => <RightCard index={index} info={card} handleClick={() => this.handleClick(index)} />)
-      let shuffled = this.shuffle(rightCards)
-      return shuffled
-    }
+  generateRightCards(arr){
+    let rightCards = arr.map((card, index) => <RightCard index={index} info={card} handleClick={() => this.handleClick(index)} />)
+    let shuffled = this.shuffle(rightCards)
+    return shuffled
+  }
 
-    handleClick = (index) => {
-          let matrix = this.state.tokens
-          let column = matrix.map(row => row[index])
-          let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
-          this.makeMove(matrix, rowNum, index)
-    }
+  handleClick = (index) => {
+        let matrix = this.state.tokens
+        let column = matrix.map(row => row[index])
+        let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
+        this.makeMove(matrix, rowNum, index)
+  }
 
-    tryAgain(){
-        this.setState({ ...this.state, header: "INVALID MOVE, TRY AGAIN!!" })
-    }
+  tryAgain(){
+      this.setState({ ...this.state, header: "INVALID MOVE, TRY AGAIN!!" })
+  }
 
-    invalid(col){
-        return this.state.tokens[5][col].props.color !== "whitesmoke"
-    }
+  invalid(col){
+      return this.state.tokens[5][col].props.color !== "whitesmoke"
+  }
 
-    executeMove(matrix){
-        this.setState({ ...this.state, tokens: matrix, turn: this.state.turn + 1 })
-    }
+  executeMove(matrix){
+      this.setState({ ...this.state, tokens: matrix, turn: this.state.turn + 1 })
+  }
 
-    makeMove = (matrix, rowNum, colNum) => {
-        if (this.invalid(colNum)){
-            this.tryAgain()
-        } else {
-            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />
-            this.executeMove(matrix)
-            this.checkWinner({row: rowNum, col: colNum})
-            if (this.state.header === "GAME OVER"){
-              console.log("it is finished")
-            } else {
-              this.computerMove(colNum)
-            }
-        }
-    }
+  async waitASec () {
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    this.computerMove()
+  }
 
-    computerMove = (colNum) => {
-      if (this.state.header === "GAME OVER") {
-        console.log("game over")
+  makeMove = (matrix, rowNum, colNum) => {
+      if (this.invalid(colNum)){
+          this.tryAgain()
       } else {
+          matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />
+          this.executeMove(matrix)
+          this.checkWinner({row: rowNum, col: colNum})
+          this.waitASec()
+      }
+  }
+
+  computerMove = () => {
+    let rando = Math.floor(Math.random() * Math.floor(7))
+    let matrix = this.state.tokens
+    let rowNum = matrix.map(row => row[rando]).findIndex(token => token.props.color === "whitesmoke")
+    if (this.invalid(rando)){
+      this.computerMove()
+    } else {
+      matrix[rowNum][rando] = <Token row={rowNum} column={rando} color={ "red" } />
+      this.executeMove(matrix)
+      this.checkWinner({row: rowNum, col: rando})
+      this.shuffleAndDeal(this.state.cards)
+    }
+  }
+
+  currentToken(index){
+      return this.state.tokens[index.row][index.col]
+  }
+
+  fourInaRow = (array, currentT) => {
+      for (let i = 0; i < 4; i++){
+          let slicedArr = array.slice(i, (i + 4))
+          if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
+              // need to discern outcome - use separate function
+              let time = parseInt(document.getElementById('timer-number').innerHTML)
+              this.props.endGame({deckId: this.props.deck.id, time: time, outcome: "drawsies?"})
+          }
+      }
+  }
+
+  diagonalUpRight(index){
+      let arr = []
+      let row = index.row + 1
+      let col = index.col + 1
+      while (row < 6 && col < 7){
+          arr.push(this.state.tokens[row][col])
+          row += 1
+          col += 1
+      }
+      return arr
+  }
+
+  diagonalUpLeft(index){
+      let arr = []
+      let row = index.row + 1
+      let col = index.col - 1
+      while (row < 6 && col > -1){
+          arr.push(this.state.tokens[row][col])
+          row += 1
+          col -= 1
+      }
+      return arr.reverse()
+  }
+
+  diagonalDownLeft(index){
+      let arr = []
+      let row = index.row - 1
+      let col = index.col - 1
+      while (row > -1 && col > -1){
+          arr.push(this.state.tokens[row][col])
+          row -= 1
+          col -= 1
+      }
+      return arr.reverse()
+  }
+
+  diagonalDownRight(index){
+      let arr = []
+      let row = index.row - 1
+      let col = index.col + 1
+      while (row > -1 && col > -1){
+          arr.push(this.state.tokens[row][col])
+          row -= 1
+          col += 1
+      }
+      return arr
+  }
+
+  checkDiagonalRight(index){
+      let currentT = this.currentToken(index)
+      let arr = [...this.diagonalDownLeft(index), currentT, ...this.diagonalUpRight(index)]
+      this.fourInaRow(arr, currentT)
+  }
+
+  checkDiagonalLeft(index){
+      let currentT = this.currentToken(index)
+      let arr = [...this.diagonalUpLeft(index), currentT, ...this.diagonalDownRight(index)].filter(token => token)
+      this.fourInaRow(arr, currentT)
+  }
+
+  checkVerticals(index){
+      let currentT = this.currentToken(index)
+      let column = this.state.tokens.map(row => row[index.col])
+      this.fourInaRow(column, currentT)
+  }
+
+  checkHorizontals(index){
+      let currentT = this.currentToken(index)
+      let row = this.state.tokens[index.row]
+      this.fourInaRow(row, currentT)
+  }
+
+  isGameOver(index){
+      console.log("is game over?", this.state.over)
+      if (this.state.over === true){
+          console.log("game is over")
+      } else {
+          console.log("execute next turn")
           let arr = this.state.cards
-          arr.splice(colNum, 1) 
+          arr.splice(index.col, 1)
           this.shuffleAndDeal(arr)
       }
-    }
+  }
 
-    currentToken(index){
-        return this.state.tokens[index.row][index.col]
-    }
-
-    fourInaRow = (array, currentT) => {
-        for (let i = 0; i < 4; i++){
-            let slicedArr = array.slice(i, (i + 4))
-            if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
-                // need to discern outcome - use separate function
-                let time = parseInt(document.getElementById('timer-number').innerHTML)
-                this.props.endGame({deckId: this.props.deckId, time: time, outcome: "drawsies?"})
-            }
-        }
-    }
-
-    diagonalUpRight(index){
-        let arr = []
-        let row = index.row + 1
-        let col = index.col + 1
-        while (row < 6 && col < 7){
-            arr.push(this.state.tokens[row][col])
-            row += 1
-            col += 1
-        }
-        return arr
-    }
-
-    diagonalUpLeft(index){
-        let arr = []
-        let row = index.row + 1
-        let col = index.col - 1
-        while (row < 6 && col > -1){
-            arr.push(this.state.tokens[row][col])
-            row += 1
-            col -= 1
-        }
-        return arr.reverse()
-    }
-
-    diagonalDownLeft(index){
-        let arr = []
-        let row = index.row - 1
-        let col = index.col - 1
-        while (row > -1 && col > -1){
-            arr.push(this.state.tokens[row][col])
-            row -= 1
-            col -= 1
-        }
-        return arr.reverse()
-    }
-
-    diagonalDownRight(index){
-        let arr = []
-        let row = index.row - 1
-        let col = index.col + 1
-        while (row > -1 && col > -1){
-            arr.push(this.state.tokens[row][col])
-            row -= 1
-            col += 1
-        }
-        return arr
-    }
-
-    checkDiagonalRight(index){
-        let currentT = this.currentToken(index)
-        let arr = [...this.diagonalDownLeft(index), currentT, ...this.diagonalUpRight(index)]
-        this.fourInaRow(arr, currentT)
-    }
-
-    checkDiagonalLeft(index){
-        let currentT = this.currentToken(index)
-        let arr = [...this.diagonalUpLeft(index), currentT, ...this.diagonalDownRight(index)].filter(token => token)
-        this.fourInaRow(arr, currentT)
-    }
-
-    checkVerticals(index){
-        let currentT = this.currentToken(index)
-        let column = this.state.tokens.map(row => row[index.col])
-        this.fourInaRow(column, currentT)
-    }
-
-    checkHorizontals(index){
-        let currentT = this.currentToken(index)
-        let row = this.state.tokens[index.row]
-        this.fourInaRow(row, currentT)
-    }
-
-    isGameOver(index){
-        console.log("is game over?", this.state.over)
-        if (this.state.over === true){
-            console.log("game is over")
-        } else {
-            console.log("execute next turn")
-            let arr = this.state.cards
-            arr.splice(index.col, 1)
-            this.shuffleAndDeal(arr)
-        }
-    }
-
-    checkWinner(index){
-        this.checkVerticals(index)
-        this.checkHorizontals(index)
-        this.checkDiagonalRight(index)
-        this.checkDiagonalLeft(index)
-        // this.isGameOver(index)
-    }
+  checkWinner(index){
+      this.checkVerticals(index)
+      this.checkHorizontals(index)
+      this.checkDiagonalRight(index)
+      this.checkDiagonalLeft(index)
+      // this.isGameOver(index)
+  }
 
   render() {
     return (

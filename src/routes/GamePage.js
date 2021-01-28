@@ -25,13 +25,13 @@ export class GamePage extends Component {
         this.setState({ view: <PlaceHolder /> })
     }
 
-    changeView = (deckId) => {
-        fetch(`http://localhost:3001/decks/${deckId}/cards`)
+    changeView = (deck) => {
+        fetch(`http://localhost:3001/decks/${deck.id}/cards`)
         .then(resp =>  resp.json())
         .then(cards => {
             this.setState({
                 // view: <NewGame />
-                view: <WholeGame deckId={deckId} cards={cards} endGame={this.endGame} />
+                view: <WholeGame deck={deck} cards={cards} endGame={this.endGame} />
             })
         })
     }
