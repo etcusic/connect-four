@@ -3,6 +3,8 @@ import Token from '../components/Token'
 import TokenButton from '../components/TokenButton'
 import LeftCard from '../components/LeftCard'
 import RightCard from '../components/RightCard'
+import GameHeader from '../components/GameHeader'
+import PlayGameButton from '../components/PlayGameButton'
 
 class WholeGame extends Component {
 
@@ -261,6 +263,11 @@ class WholeGame extends Component {
         console.log(this.state)
     }
 
+    // build this out to start game with a running timer
+    initializeGame = () => {
+      this.setState({...this.state, header: "It's working, yay!"})
+    }
+
   render() {
     return (
       <div className="row">
@@ -270,9 +277,10 @@ class WholeGame extends Component {
         </div>
 
         <div className="col s8"> 
-            <div class="center">
-              { this.state.header === "GAME READY!" ? <button id="play-game-button" class=" btn-large">PLAY GAME</button> : <h2 className="center">{this.state.header}</h2> }
-            </div>
+            <header class="center">
+              {/* { this.state.header === "GAME READY!" ? <button id="play-game-button" class=" btn-large">PLAY GAME</button> : <h2 className="center">{this.state.header}</h2> } */}
+              { this.state.header === "GAME READY!" ? <PlayGameButton initializeGame={ this.initializeGame } /> : <GameHeader header={this.state.header} /> }
+            </header>
             
             <div id="game-board" className="col s12">
                 <table id="game-board-table" className="center">
