@@ -21,7 +21,7 @@ export class GamePage extends Component {
 
     endGame = (stateObject) => {
         const log = {...stateObject} // need to add user id and deck id - use redux for user id; GamePage state for deck id
-        console.log(stateObject)
+        console.log(stateObject) // call fetch request to send game log from actions folder
         this.setState({ view: <PlaceHolder /> })
     }
 

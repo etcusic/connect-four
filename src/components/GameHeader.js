@@ -22,7 +22,7 @@ export class GameHeader extends Component {
       <div>
         <div id="timer" class="right">
             Timer:
-            <div>{this.state.time}</div>
+            <div id="timer-number">{this.state.time}</div>
         </div>
         <div id="header">{ this.props.header }</div>
       </div>
