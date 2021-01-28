@@ -5,13 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lavender;
+  background-color: whitesmoke;
+  color: darkgreen
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } 
+
+.navlinks {
+  color: darkgreen;
+}
 
 .token-row {
   border: 3px solid black;
@@ -27,7 +32,7 @@ code {
 }
 
 #button-row td {
-  background-color: lavender;
+  background-color: whitesmoke;
   border: none;
 }
 
@@ -137,17 +142,15 @@ img {
   max-height: 100%;
 }
 
-#game-logs-panel {
-  background-color: darkgreen;
-  color: whitesmoke;
+#deck-selector {
+  font-size: large;
   font-weight: bold;
 }
 
-.extra-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.selection-list {
+  background-color: darkgreen;
+  color: whitesmoke;
+  font-weight: bold;
 }
 
 .three-percent {

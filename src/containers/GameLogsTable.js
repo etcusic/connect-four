@@ -7,7 +7,7 @@ export class GameLogsTable extends Component {
         return (
         <div>
             <h2 className="center">Connect 4 Game Logs</h2>
-            <div id="game-logs-panel" className="container">
+            <div className="container selection-list">
                 <ConnectFourLogs logs={ this.props.logs } />
             </div>
         </div>

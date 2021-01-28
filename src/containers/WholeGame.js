@@ -24,63 +24,63 @@ class WholeGame extends Component {
       this.shuffleAndDeal(this.props.cards)
     }
 
-  initializeTokens() {
-    let nestedArray = []
-    for (let i = 0; i < 6; i++) {
-      let rowArray = []
-      for (let j = 0; j < 7; j++) {
-        rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } />)
+    initializeTokens() {
+      let nestedArray = []
+      for (let i = 0; i < 6; i++) {
+        let rowArray = []
+        for (let j = 0; j < 7; j++) {
+          rowArray.push(<Token row={i} column={j} color={ "whitesmoke" } />)
+        }
+        nestedArray.push(rowArray)  
       }
-      nestedArray.push(rowArray)  
+      return nestedArray
     }
-    return nestedArray
-  }
 
-  generateRow = (tokenArray) => {
-    let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
-    return cells.map(cell => cell)
-  }
+    generateRow = (tokenArray) => {
+      let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
+      return cells.map(cell => cell)
+    }
 
-  generateCards(){
-      let array = []
-      for (let i = 0; i < 7; i++) {
-        array.push({side_a: "", side_b: ""})
-      }
-      return array
-  }
-  
-  shuffle (arrayOfCards) {
-    return arrayOfCards.sort(() => Math.random() - 0.5)
-  }
+    generateCards(){
+        let array = []
+        for (let i = 0; i < 7; i++) {
+          array.push({side_a: "", side_b: ""})
+        }
+        return array
+    }
+    
+    shuffle (arrayOfCards) {
+      return arrayOfCards.sort(() => Math.random() - 0.5)
+    }
 
-  shuffleAndDeal(arr){
-      let shuffled = this.shuffle(arr)
-      this.setState({
-        tokens: this.state.tokens,
-        cards: shuffled,
-        leftCards: this.generateLeftCards(shuffled.slice(0,7)),
-        rightCards: this.generateRightCards(shuffled.slice(0,7)),
-        turn: this.state.turn + 1,
-        header: "YOUR TURN"
-    })       
-  }
+    shuffleAndDeal(arr){
+        let shuffled = this.shuffle(arr)
+        this.setState({
+          tokens: this.state.tokens,
+          cards: shuffled,
+          leftCards: this.generateLeftCards(shuffled.slice(0,7)),
+          rightCards: this.generateRightCards(shuffled.slice(0,7)),
+          turn: this.state.turn + 1,
+          header: "YOUR TURN"
+      })       
+    }
 
-  generateLeftCards(arr){
-    return arr.map((card, index) => <LeftCard info={card} number={index} />)
-  }
+    generateLeftCards(arr){
+      return arr.map((card, index) => <LeftCard info={card} number={index} />)
+    }
 
-  generateRightCards(arr){
-    let rightCards = arr.map((card, index) => <RightCard index={index} info={card} handleClick={() => this.handleClick(index)} />)
-    let shuffled = this.shuffle(rightCards)
-    return shuffled
-  }
+    generateRightCards(arr){
+      let rightCards = arr.map((card, index) => <RightCard index={index} info={card} handleClick={() => this.handleClick(index)} />)
+      let shuffled = this.shuffle(rightCards)
+      return shuffled
+    }
 
-  handleClick = (index) => {
-        let matrix = this.state.tokens
-        let column = matrix.map(row => row[index])
-        let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
-        this.makeMove(matrix, rowNum, index)
-  }
+    handleClick = (index) => {
+          let matrix = this.state.tokens
+          let column = matrix.map(row => row[index])
+          let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
+          this.makeMove(matrix, rowNum, index)
+    }
 
     tryAgain(){
         this.setState({ ...this.state, header: "INVALID MOVE, TRY AGAIN!!" })
@@ -106,14 +106,6 @@ class WholeGame extends Component {
             } else {
               this.computerMove(colNum)
             }
-            
-            // if (this.state.over === true){
-            //   console.log("game over")
-            // } else {
-            //   let arr = this.state.cards
-            //   arr.splice(colNum, 1) 
-            //   this.shuffleAndDeal(arr)
-            // }
         }
     }
 
