@@ -29,3 +29,14 @@ export const fetchConnectFourLogs = (id) => {
         })
     }
 }
+
+export const sendConnectFourLog = (log) => {
+    // OPTIONAL ADDITION: if (id) => scoped out route; else => index all game logs
+    return(dispatch) => {
+        return fetch(`http://localhost:3001/users/${id}/connect_four_logs`) 
+        .then(resp =>  resp.json())
+        .then(gameLogs => {
+            dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
+        })
+    }
+}

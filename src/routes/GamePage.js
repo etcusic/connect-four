@@ -20,8 +20,8 @@ export class GamePage extends Component {
     }
 
     endGame = (stateObject) => {
-        const log = {...stateObject} // need to add user id and deck id - use redux for user id; GamePage state for deck id
-        console.log(stateObject) // call fetch request to send game log from actions folder
+        const log = {...stateObject, userId: this.props.userId} // need to add user id and deck id - use redux for user id; GamePage state for deck id
+        console.log(log) // call fetch request to send game log from actions folder
         this.setState({ view: <PlaceHolder /> })
     }
 
@@ -48,7 +48,8 @@ export class GamePage extends Component {
 
 const mapStateToProps = state => {
     return {
-      decks: state.decks
+        userId: state.user.id,
+        decks: state.decks
     }
 }
 

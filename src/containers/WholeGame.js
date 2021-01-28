@@ -111,6 +111,7 @@ class WholeGame extends Component {
   }
 
   computerMove = () => {
+    console.log(this.state.turn)
     let rando = Math.floor(Math.random() * Math.floor(7))
     let matrix = this.state.tokens
     let rowNum = matrix.map(row => row[rando]).findIndex(token => token.props.color === "whitesmoke")
@@ -128,13 +129,21 @@ class WholeGame extends Component {
       return this.state.tokens[index.row][index.col]
   }
 
+  winOrLose(){
+    if (this.state.turn % 2 === 0){
+      return "lost"
+    } else {
+      return "won"
+    }
+  }
+
   fourInaRow = (array, currentT) => {
       for (let i = 0; i < 4; i++){
           let slicedArr = array.slice(i, (i + 4))
           if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
               // need to discern outcome - use separate function
               let time = parseInt(document.getElementById('timer-number').innerHTML)
-              this.props.endGame({deckId: this.props.deck.id, time: time, outcome: "drawsies?"})
+              this.props.endGame({deckId: this.props.deck.id, time: time, outcome: this.winOrLose()})
           }
       }
   }
@@ -211,24 +220,11 @@ class WholeGame extends Component {
       this.fourInaRow(row, currentT)
   }
 
-  isGameOver(index){
-      console.log("is game over?", this.state.over)
-      if (this.state.over === true){
-          console.log("game is over")
-      } else {
-          console.log("execute next turn")
-          let arr = this.state.cards
-          arr.splice(index.col, 1)
-          this.shuffleAndDeal(arr)
-      }
-  }
-
   checkWinner(index){
       this.checkVerticals(index)
       this.checkHorizontals(index)
       this.checkDiagonalRight(index)
       this.checkDiagonalLeft(index)
-      // this.isGameOver(index)
   }
 
   render() {
