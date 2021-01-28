@@ -19,13 +19,19 @@ export class GamePage extends Component {
         })
     }
 
+    endGame = (stateObject) => {
+        const log = {...stateObject} // need to add user id and deck id - use redux for user id; GamePage state for deck id
+        console.log(stateObject)
+        this.setState({ view: <PlaceHolder /> })
+    }
+
     changeView = (deckId) => {
         fetch(`http://localhost:3001/decks/${deckId}/cards`)
         .then(resp =>  resp.json())
         .then(cards => {
             this.setState({
                 // view: <NewGame />
-                view: <WholeGame cards={cards} />
+                view: <WholeGame deckId={deckId} cards={cards} endGame={this.endGame} />
             })
         })
     }

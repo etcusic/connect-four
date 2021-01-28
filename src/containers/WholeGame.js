@@ -15,21 +15,13 @@ class WholeGame extends Component {
       cards: this.generateCards(),
       leftCards: [],
       rightCards: [],
-      header: "GAME READY!"
+      header: "GAME READY!",
+      turn: 1
     }
   }
 
     initializeGame = () => {
-      let shuffled = this.shuffle(this.props.cards)
-      this.setState({
-          tokens: this.state.tokens,
-          cards: shuffled,
-          leftCards: this.generateLeftCards(shuffled.slice(0,7)),
-          rightCards: this.generateRightCards(shuffled.slice(0,7)),
-          turn: 1,
-          over: false,
-          header: "YOUR TURN"
-      })
+      this.shuffleAndDeal(this.props.cards)
     }
 
   initializeTokens() {
@@ -56,6 +48,10 @@ class WholeGame extends Component {
       }
       return array
   }
+  
+  shuffle (arrayOfCards) {
+    return arrayOfCards.sort(() => Math.random() - 0.5)
+  }
 
   shuffleAndDeal(arr){
       let shuffled = this.shuffle(arr)
@@ -64,8 +60,7 @@ class WholeGame extends Component {
         cards: shuffled,
         leftCards: this.generateLeftCards(shuffled.slice(0,7)),
         rightCards: this.generateRightCards(shuffled.slice(0,7)),
-        turn: this.state.turn,
-        over: false,
+        turn: this.state.turn + 1,
         header: "YOUR TURN"
     })       
   }
@@ -79,67 +74,69 @@ class WholeGame extends Component {
     let shuffled = this.shuffle(rightCards)
     return shuffled
   }
-  
-  shuffle (arrayOfCards) {
-    return arrayOfCards.sort(() => Math.random() - 0.5)
-  }
 
   handleClick = (index) => {
         let matrix = this.state.tokens
         let column = matrix.map(row => row[index])
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
         this.makeMove(matrix, rowNum, index)
-        // this.checkWinner({row: rowNum, col: index})
   }
 
     tryAgain(){
-        console.log(this.state)
-        this.setState({
-            tokens: this.state.tokens,
-            turn: this.state.turn,
-            over: false,
-            header: "INVALID MOVE, TRY AGAIN!!"
-        })
+        this.setState({ ...this.state, header: "INVALID MOVE, TRY AGAIN!!" })
     }
 
-    notValid(col){
+    invalid(col){
         return this.state.tokens[5][col].props.color !== "whitesmoke"
     }
 
     executeMove(matrix){
-        this.setState({
-            tokens: matrix,
-            turn: this.state.turn + 1,
-            over: false,
-            header: this.state.header
-        })
+        this.setState({ ...this.state, tokens: matrix, turn: this.state.turn + 1 })
     }
 
     makeMove = (matrix, rowNum, colNum) => {
-        if (this.notValid(colNum)){
-            console.log("not valid")
+        if (this.invalid(colNum)){
             this.tryAgain()
-        } else if (this.state.turn % 2 === 0){
-            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />  
-            this.executeMove(matrix)
-            this.checkWinner({row: rowNum, col: colNum})
         } else {
-            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "red" } />
+            matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />
             this.executeMove(matrix)
             this.checkWinner({row: rowNum, col: colNum})
+            if (this.state.header === "GAME OVER"){
+              console.log("it is finished")
+            } else {
+              this.computerMove(colNum)
+            }
+            
+            // if (this.state.over === true){
+            //   console.log("game over")
+            // } else {
+            //   let arr = this.state.cards
+            //   arr.splice(colNum, 1) 
+            //   this.shuffleAndDeal(arr)
+            // }
         }
+    }
+
+    computerMove = (colNum) => {
+      if (this.state.header === "GAME OVER") {
+        console.log("game over")
+      } else {
+          let arr = this.state.cards
+          arr.splice(colNum, 1) 
+          this.shuffleAndDeal(arr)
+      }
     }
 
     currentToken(index){
         return this.state.tokens[index.row][index.col]
     }
 
-    fourInaRow(array, currentT){
+    fourInaRow = (array, currentT) => {
         for (let i = 0; i < 4; i++){
             let slicedArr = array.slice(i, (i + 4))
             if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
-                console.log("game over") // need to implement a game over function
-                this.endGame()
+                // need to get time and discern outcome
+                this.props.endGame({time: 0, outcome: "drawsies?"})
             }
         }
     }
@@ -233,26 +230,7 @@ class WholeGame extends Component {
         this.checkHorizontals(index)
         this.checkDiagonalRight(index)
         this.checkDiagonalLeft(index)
-        this.isGameOver(index)
-    }
-
-    makeAPromise(myFunction){
-        return new Promise(() => myFunction)
-    }
-
-    endGame(){
-        document.getElementById('button-row').remove()  
-        document.querySelectorAll('.quiz-card').forEach(element => element.remove())
-        this.setState({
-            tokens: this.state.tokens,
-            cards: [],
-            leftCards: [],
-            rightCards: [],
-            turn: this.state.turn,
-            over: true,
-            header: "GAME OVER"
-        })
-        console.log(this.state)
+        // this.isGameOver(index)
     }
 
   render() {
