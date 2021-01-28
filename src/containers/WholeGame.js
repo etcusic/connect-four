@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Token from '../components/Token'
-import TokenButton from '../components/TokenButton'
+import NumbersColumn from '../components/NumbersColumn'
 import LeftCard from '../components/LeftCard'
 import RightCard from '../components/RightCard'
 import GameHeader from '../components/GameHeader'
@@ -15,22 +15,22 @@ class WholeGame extends Component {
       cards: this.generateCards(),
       leftCards: [],
       rightCards: [],
-      header: ""
+      header: "GAME READY!"
     }
   }
 
-  componentDidMount() {
-    let shuffled = this.shuffle(this.props.cards)
-    this.setState({
-        tokens: this.state.tokens,
-        cards: shuffled,
-        leftCards: this.generateLeftCards(shuffled.slice(0,7)),
-        rightCards: this.generateRightCards(shuffled.slice(0,7)),
-        turn: 1,
-        over: false,
-        header: "GAME READY!"
-    })
-  }
+    initializeGame = () => {
+      let shuffled = this.shuffle(this.props.cards)
+      this.setState({
+          tokens: this.state.tokens,
+          cards: shuffled,
+          leftCards: this.generateLeftCards(shuffled.slice(0,7)),
+          rightCards: this.generateRightCards(shuffled.slice(0,7)),
+          turn: 1,
+          over: false,
+          header: "YOUR TURN"
+      })
+    }
 
   initializeTokens() {
     let nestedArray = []
@@ -47,14 +47,6 @@ class WholeGame extends Component {
   generateRow = (tokenArray) => {
     let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
     return cells.map(cell => cell)
-  }
-
-  createButtons = () => {
-    let buttons = []
-    for (let i = 0; i < 7; i++){
-        buttons.push(<TokenButton number={i + 1} />)
-    }
-    return buttons.map(map => map)
   }
 
   generateCards(){
@@ -263,11 +255,6 @@ class WholeGame extends Component {
         console.log(this.state)
     }
 
-    // build this out to start game with a running timer
-    initializeGame = () => {
-      this.setState({...this.state, header: "It's working, yay!"})
-    }
-
   render() {
     return (
       <div className="row">
@@ -278,7 +265,6 @@ class WholeGame extends Component {
 
         <div className="col s8"> 
             <header class="center">
-              {/* { this.state.header === "GAME READY!" ? <button id="play-game-button" class=" btn-large">PLAY GAME</button> : <h2 className="center">{this.state.header}</h2> } */}
               { this.state.header === "GAME READY!" ? <PlayGameButton initializeGame={ this.initializeGame } /> : <GameHeader header={this.state.header} /> }
             </header>
             
@@ -291,7 +277,7 @@ class WholeGame extends Component {
                         <tr className="token-row">{ this.generateRow(this.state.tokens[2]) }</tr>
                         <tr className="token-row">{ this.generateRow(this.state.tokens[1]) }</tr>
                         <tr className="token-row">{ this.generateRow(this.state.tokens[0]) }</tr>
-                        <tr id="button-row">{ this.generateRow(this.createButtons()) }</tr>
+                        <NumbersColumn />
                     </tbody>
                 </table>
             </div>
