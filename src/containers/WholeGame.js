@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-// import { fetchCards } from '../actions/index'
 import Token from '../components/Token'
 import TokenButton from '../components/TokenButton'
 import LeftCard from '../components/LeftCard'
@@ -15,21 +13,18 @@ class WholeGame extends Component {
       cards: this.generateCards(),
       leftCards: [],
       rightCards: [],
-      turn: 1,
-      over: false,
       header: ""
     }
   }
 
   componentDidMount() {
-    console.log(this.props)
     let shuffled = this.shuffle(this.props.cards)
     this.setState({
         tokens: this.state.tokens,
         cards: shuffled,
         leftCards: this.generateLeftCards(shuffled.slice(0,7)),
         rightCards: this.generateRightCards(shuffled.slice(0,7)),
-        turn: this.state.turn,
+        turn: 1,
         over: false,
         header: "GAME READY!"
     })
@@ -274,8 +269,11 @@ class WholeGame extends Component {
             { this.state.leftCards.map(card => card) }
         </div>
 
-        <div className="col s8">
-            <h2 className="center">{this.state.header}</h2>
+        <div className="col s8"> 
+            <div class="center">
+              { this.state.header === "GAME READY!" ? <button id="play-game-button" class=" btn-large">PLAY GAME</button> : <h2 className="center">{this.state.header}</h2> }
+            </div>
+            
             <div id="game-board" className="col s12">
                 <table id="game-board-table" className="center">
                     <tbody>
@@ -300,12 +298,4 @@ class WholeGame extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     cards: state.currentDeckOfCards
-//   }
-// }
-
 export default WholeGame
-// export default connect(mapStateToProps)(WholeGame)
-// export default connect(mapStateToProps, { fetchCards })(WholeGame)

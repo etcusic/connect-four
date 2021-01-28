@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCards } from '../actions/index'
 import PlaceHolder from '../components/PlaceHolder'
 import DeckSelector from '../components/DeckSelector'
 import WholeGame from '../containers/WholeGame'
@@ -15,7 +14,6 @@ export class GamePage extends Component {
     }
 
     componentDidMount(){
-        console.log("game page did mount")
         this.setState({
             view: <DeckSelector decks={ this.props.decks } changeView={ this.changeView }/>
         })
@@ -48,4 +46,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchCards })(GamePage)
+export default connect(mapStateToProps)(GamePage)

@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+//make class component and put fetch decks here
 const DeckSelector = ({ decks, changeView }) => {
     return (
         <div className="absolute-center">
@@ -8,7 +10,6 @@ const DeckSelector = ({ decks, changeView }) => {
                 { decks.map((deck, index) => <li className="collection-item" key={ `deck-${index + 1}` } onClick={() => changeView(index + 1) } >{ deck.title }</li>)}
             </ul>
         </div>
-        
     )
 }
 
