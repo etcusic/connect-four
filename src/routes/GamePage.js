@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { sendConnectFourLog } from '../actions/index'
 import PlaceHolder from '../components/PlaceHolder'
 import DeckSelector from '../components/DeckSelector'
 import WholeGame from '../containers/WholeGame'
@@ -20,12 +21,14 @@ export class GamePage extends Component {
     }
 
     endGame = (stateObject) => {
-        const log = {...stateObject, userId: this.props.userId} // need to add user id and deck id - use redux for user id; GamePage state for deck id
+        const log = {...stateObject, user_id: this.props.userId} // need to add user id and deck id - use redux for user id; GamePage state for deck id
         console.log(log) // call fetch request to send game log from actions folder
+        this.props.sendConnectFourLog(log)
         this.setState({ view: <PlaceHolder /> })
     }
 
     changeView = (deck) => {
+        // move to acitons file
         fetch(`http://localhost:3001/decks/${deck.id}/cards`)
         .then(resp =>  resp.json())
         .then(cards => {
@@ -53,4 +56,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(GamePage)
+export default connect(mapStateToProps, { sendConnectFourLog })(GamePage)

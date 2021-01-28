@@ -30,13 +30,16 @@ export const fetchConnectFourLogs = (id) => {
     }
 }
 
-export const sendConnectFourLog = (log) => {
-    // OPTIONAL ADDITION: if (id) => scoped out route; else => index all game logs
+export const sendConnectFourLog = (gameLog) => {
     return(dispatch) => {
-        return fetch(`http://localhost:3001/users/${id}/connect_four_logs`) 
-        .then(resp =>  resp.json())
-        .then(gameLogs => {
-            dispatch({ type: "LOAD_CONNECT_FOUR_LOGS", payload: gameLogs })
+        return fetch("http://localhost:3001/connect_four_logs", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({connect_four_log: gameLog})
         })
+        .then(response => response.json())
+        .then(log => dispatch({ type: "ADD_CONNECT_FOUR_LOG", payload: log}))
     }
 }

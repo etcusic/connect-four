@@ -3,6 +3,8 @@ const gameLogsReducer = (state = [], action) => {
         case "LOAD_CONNECT_FOUR_LOGS": 
             let gameLogs = action.payload
             return gameLogs
+        case "ADD_CONNECT_FOUR_LOG":
+            console.log(action.payload)
 
         default:
             return state

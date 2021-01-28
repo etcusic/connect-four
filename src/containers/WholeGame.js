@@ -143,7 +143,7 @@ class WholeGame extends Component {
           if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
               // need to discern outcome - use separate function
               let time = parseInt(document.getElementById('timer-number').innerHTML)
-              this.props.endGame({deckId: this.props.deck.id, time: time, outcome: this.winOrLose()})
+              this.props.endGame({deck_id: this.props.deck.id, time: time, outcome: this.winOrLose()})
           }
       }
   }
