@@ -4,8 +4,8 @@ const gameLogsReducer = (state = [], action) => {
             let gameLogs = action.payload
             return gameLogs
         case "ADD_CONNECT_FOUR_LOG":
-            let gameLogs = action.payload
-            return gameLogs
+            let logs = action.payload
+            return logs
 
         default:
             return state

@@ -19,14 +19,14 @@ export class GameHeader extends Component {
 
     render(){
         return (
-      <div>
-        <div id="timer" class="right">
-            Timer:
-            <div id="timer-number">{this.state.time}</div>
-        </div>
-        <div id="header">{ this.props.header }</div>
-      </div>
-    )
+            <div>
+                <div id="timer" className="right">
+                    Timer:
+                    <div id="timer-number">{this.state.time}</div>
+                </div>
+                <div id="header">{ this.props.header }</div>
+            </div>
+        )
     }
     
 }

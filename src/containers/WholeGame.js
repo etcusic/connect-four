@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Token from '../components/Token'
-// import NumbersColumn from '../components/NumbersColumn'
 import LeftCard from '../components/LeftCard'
 import RightCard from '../components/RightCard'
-import GameHeader from '../components/GameHeader'
+import GameHeader from './GameHeader'
 import PlayGameButton from '../components/PlayGameButton'
+import TableBody from '../components/TableBody'
 
 class WholeGame extends Component {
 
@@ -224,6 +224,11 @@ class WholeGame extends Component {
       this.checkDiagonalLeft(index)
   }
 
+  // generateRow = (tokenArray) => {
+  //   let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
+  //   return cells.map(cell => cell)
+  // }
+
   render() {
     return (
       <div className="row">
@@ -233,14 +238,12 @@ class WholeGame extends Component {
         </div>
 
         <div className="col s8"> 
-            <header class="center">
+            <header className="center">
               { this.state.header === "GAME READY!" ? <PlayGameButton initializeGame={ this.initializeGame } /> : <GameHeader header={this.state.header} /> }
             </header>
             
             <div id="game-board" className="col s12">
-                <table id="game-board-table" className="center">
-                  <TableBody tokens={this.state.tokens} />
-                </table>
+              <TableBody tokens={this.state.tokens} />
             </div>
         </div>
 
