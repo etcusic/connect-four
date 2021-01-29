@@ -76,6 +76,8 @@ class WholeGame extends Component {
   }
 
   handleClick = (index) => {
+    // remove this card from state
+        // let card = this.state.cards[index]
         let matrix = this.state.tokens
         let column = matrix.map(row => row[index])
         let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
@@ -90,8 +92,9 @@ class WholeGame extends Component {
       return this.state.tokens[5][col].props.color !== "whitesmoke"
   }
 
-  executeMove(matrix){
-      this.setState({ ...this.state, tokens: matrix, turn: this.state.turn + 1 })
+  executeMove(matrix, index){
+      let updatedCards = this.state.cards.filter((card, i) => i !== index)
+      this.setState({ ...this.state, cards: updatedCards, tokens: matrix, turn: this.state.turn + 1 })
   }
 
   async waitASec () {
@@ -99,13 +102,13 @@ class WholeGame extends Component {
     this.computerMove()
   }
 
-  makeMove = (matrix, rowNum, colNum) => {
-      if (this.invalid(colNum)){
+  makeMove = (matrix, rowNum, index) => {
+      if (this.invalid(index)){
           this.tryAgain()
       } else {
-          matrix[rowNum][colNum] = <Token row={rowNum} column={colNum} color={ "blue" } />
-          this.executeMove(matrix)
-          this.checkWinner({row: rowNum, col: colNum})
+          matrix[rowNum][index] = <Token row={rowNum} column={index} color={ "blue" } />
+          this.executeMove(matrix, index)
+          this.checkWinner({row: rowNum, col: index})
           this.waitASec()
       }
   }
