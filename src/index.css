@@ -187,3 +187,13 @@ img {
   font-size: 45px;
   font-weight: bold;
 }
+
+.game-over-content {
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.three-percent {
+  margin-top: 3%;
+}

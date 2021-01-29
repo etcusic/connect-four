@@ -4,6 +4,7 @@ import { sendConnectFourLog } from '../actions/index'
 import PlaceHolder from '../components/PlaceHolder'
 import DeckSelector from '../components/DeckSelector'
 import WholeGame from '../containers/WholeGame'
+import GameOver from '../containers/GameOver'
 
 export class GamePage extends Component {
 
@@ -24,7 +25,7 @@ export class GamePage extends Component {
         const log = {...stateObject, user_id: this.props.userId} // need to add user id and deck id - use redux for user id; GamePage state for deck id
         console.log(log) // call fetch request to send game log from actions folder
         this.props.sendConnectFourLog(log)
-        this.setState({ view: <PlaceHolder /> })
+        this.setState({ view: <GameOver /> })
     }
 
     changeView = (deck) => {
