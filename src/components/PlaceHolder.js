@@ -4,7 +4,7 @@ const PlaceHolder = () => {
     return (
         <div>
             Hold onto your butts
-      </div>
+        </div>
     )
 }
 

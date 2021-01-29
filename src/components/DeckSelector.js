@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-//make class component and put fetch decks here
 const DeckSelector = ({ decks, changeView }) => {
     return (
         <div className="absolute-center">

@@ -1,10 +1,9 @@
 import React from 'react'
 import NumbersColumn from './NumbersColumn'
 
-const ConnectFourLogs = ({ tokens }) => {
+const ConnectFourLogs = () => {
     
     generateRow = () => {
-        // let tokenArray = this.props.tokens
         let cells = this.props.tokens.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
         return cells.map(cell => cell)
         }
