@@ -22,8 +22,7 @@ export class GamePage extends Component {
     }
 
     endGame = (stateObject) => {
-        const log = {...stateObject, user_id: this.props.userId} // need to add user id and deck id - use redux for user id; GamePage state for deck id
-        console.log(log) // call fetch request to send game log from actions folder
+        const log = {...stateObject, user_id: this.props.userId} 
         this.props.sendConnectFourLog(log)
         this.setState({ view: <GameOver /> })
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Token from '../components/Token'
-import NumbersColumn from '../components/NumbersColumn'
+// import NumbersColumn from '../components/NumbersColumn'
 import LeftCard from '../components/LeftCard'
 import RightCard from '../components/RightCard'
 import GameHeader from '../components/GameHeader'
@@ -34,11 +34,6 @@ class WholeGame extends Component {
       nestedArray.push(rowArray)  
     }
     return nestedArray
-  }
-
-  generateRow = (tokenArray) => {
-    let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
-    return cells.map(cell => cell)
   }
 
   generateCards(){
@@ -114,7 +109,6 @@ class WholeGame extends Component {
   }
 
   computerMove = () => {
-    console.log(this.state.turn)
     let rando = Math.floor(Math.random() * Math.floor(7))
     let matrix = this.state.tokens
     let rowNum = matrix.map(row => row[rando]).findIndex(token => token.props.color === "whitesmoke")
@@ -245,15 +239,7 @@ class WholeGame extends Component {
             
             <div id="game-board" className="col s12">
                 <table id="game-board-table" className="center">
-                    <tbody>
-                        <tr className="token-row">{ this.generateRow(this.state.tokens[5]) }</tr>
-                        <tr className="token-row">{ this.generateRow(this.state.tokens[4]) }</tr>
-                        <tr className="token-row">{ this.generateRow(this.state.tokens[3]) }</tr>
-                        <tr className="token-row">{ this.generateRow(this.state.tokens[2]) }</tr>
-                        <tr className="token-row">{ this.generateRow(this.state.tokens[1]) }</tr>
-                        <tr className="token-row">{ this.generateRow(this.state.tokens[0]) }</tr>
-                        <NumbersColumn />
-                    </tbody>
+                  <TableBody tokens={this.state.tokens} />
                 </table>
             </div>
         </div>
