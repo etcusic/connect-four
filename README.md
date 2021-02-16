@@ -1,3 +1,7 @@
+Video breakdown:
+
+Blog entry: https://etcusic.github.io/setting_up_redux 
+
 Rails API repo: https://github.com/etcusic/memory-game-api
 
 Instructions:
@@ -17,24 +21,24 @@ This should set up the rails server if everything runs correctly. Then clone thi
 
 To Do List:
 
-[ ] Refactor game logic -> put somewhere else besides in component
-[ ] User sign in
-[ ] Add a create deck page
-[ ] Add an edit deck page (merge with create deck page?)
-[ ] Add user sign in
-[ ] Refactor CSS layout - implement BEM structure
+- [ ] Refactor game logic -> put somewhere else besides in component
+- [ ] User sign in
+- [ ] Add a create deck page
+- [ ] Add an edit deck page (merge with create deck page?)
+- [ ] Add user sign in
+- [ ] Refactor CSS layout - implement BEM structure
 
 
 Game Refactor:
-[ ] link left cards, right cards, and game board
-[ ] create timer
-[ ] create ConnectFour class with constructor to make a game object
-[ ] create human player class
-[ ] create computer player class
+- [ ] link left cards, right cards, and game board
+- [ ] create timer
+- [ ] create ConnectFour class with constructor to make a game object
+- [ ] create human player class
+- [ ] create computer player class
 
 
 Stretch Goals:
-[ ] Create practice option
-[ ] Create tic-tac-toe game
-[ ] Create speed game
-[ ] Be able to add images as a side of the card
+- [ ] Create practice option
+- [ ] Create tic-tac-toe game
+- [ ] Create speed game
+- [ ] Be able to add images as a side of the card
