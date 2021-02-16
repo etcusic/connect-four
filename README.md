@@ -15,12 +15,10 @@ This should set up the rails server if everything runs correctly. Then clone thi
 - npm install 
 - npm start 
 
-License: 
-
 To Do List:
 
 [ ] Refactor game logic -> put somewhere else besides in component
-[ ] Muppet "sign-in"
+[ ] User sign in
 [ ] Add a create deck page
 [ ] Add an edit deck page (merge with create deck page?)
 [ ] Add user sign in

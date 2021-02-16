@@ -2,19 +2,22 @@ import React, { Component } from 'react'
 
 export class GameHeader extends Component {
 
-    constructor(){
-        super()
-        this.state = {
-            time: 0
-        }
-    }
-    
-    componentDidMount(){
-        this.countdown()
+    state = {
+        time: 0
     }
 
-    countdown = () => {
-        return setInterval(() => this.setState({ time: (this.state.time + 1) }), 1000)
+    componentDidMount() {
+        this.interval = setInterval(this.clockTick, 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
+
+    clockTick = () => {
+        this.setState(prevState => ({
+            time: prevState.time + 1
+        }))
     }
 
     render(){

@@ -71,12 +71,10 @@ class WholeGame extends Component {
   }
 
   handleClick = (index) => {
-    // remove this card from state
-        // let card = this.state.cards[index]
-        let matrix = this.state.tokens
-        let column = matrix.map(row => row[index])
-        let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
-        this.makeMove(matrix, rowNum, index)
+    let matrix = this.state.tokens
+    let column = matrix.map(row => row[index])
+    let rowNum = column.findIndex(token => token.props.color === "whitesmoke")
+    this.makeMove(matrix, rowNum, index)
   }
 
   tryAgain(){
@@ -138,7 +136,6 @@ class WholeGame extends Component {
       for (let i = 0; i < 4; i++){
           let slicedArr = array.slice(i, (i + 4))
           if (slicedArr.length === 4 && slicedArr.every(token => token.props.color === currentT.props.color)){
-              // need to discern outcome - use separate function
               let time = parseInt(document.getElementById('timer-number').innerHTML)
               this.props.endGame({deck_id: this.props.deck.id, time: time, outcome: this.winOrLose()})
           }
@@ -223,11 +220,6 @@ class WholeGame extends Component {
       this.checkDiagonalRight(index)
       this.checkDiagonalLeft(index)
   }
-
-  // generateRow = (tokenArray) => {
-  //   let cells = tokenArray.map((token, i) => <td className="cell" key={i.toString()}>{ token }</td>)
-  //   return cells.map(cell => cell)
-  // }
 
   render() {
     return (

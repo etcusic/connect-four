@@ -23,17 +23,17 @@ export class GamePage extends Component {
 
     endGame = (stateObject) => {
         const log = {...stateObject, user_id: this.props.userId} 
+        console.log("A")
         this.props.sendConnectFourLog(log)
+        console.log("B")
         this.setState({ view: <GameOver /> })
     }
 
     changeView = (deck) => {
-        // move to acitons file
         fetch(`http://localhost:3001/decks/${deck.id}/cards`)
         .then(resp =>  resp.json())
         .then(cards => {
             this.setState({
-                // view: <NewGame />
                 view: <WholeGame deck={deck} cards={cards} endGame={this.endGame} />
             })
         })
@@ -55,5 +55,5 @@ const mapStateToProps = state => {
         decks: state.decks
     }
 }
-
+  
 export default connect(mapStateToProps, { sendConnectFourLog })(GamePage)

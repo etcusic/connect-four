@@ -1,10 +1,12 @@
 import React from 'react'
+import Upvotes from './Upvotes'
 
 const ConnectFourLogs = ({ logs }) => {
     
     const tableCells = logs.map( (log, i) => {
         return (
             <tr key={ `gamelog-${i + 1}` }>
+                <td><Upvotes /></td>
                 <td>{log.user}</td>
                 <td>{log.deck}</td>
                 <td>{log.time} seconds</td>
@@ -18,6 +20,7 @@ const ConnectFourLogs = ({ logs }) => {
             <table>
                 <thead>
                     <tr>
+                        <th>Upvotes</th>
                         <th>NAME:</th>
                         <th>CARD SET:</th>
                         <th>TIME:</th>

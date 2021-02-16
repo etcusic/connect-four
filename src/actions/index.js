@@ -32,6 +32,7 @@ export const fetchConnectFourLogs = (id) => {
 
 export const sendConnectFourLog = (gameLog) => {
     return(dispatch) => {
+        console.log("C")
         return fetch("http://localhost:3001/connect_four_logs", {
             method: 'POST',
             headers: {
@@ -40,6 +41,9 @@ export const sendConnectFourLog = (gameLog) => {
             body: JSON.stringify({connect_four_log: gameLog})
         })
         .then(response => response.json())
-        .then(log => dispatch({ type: "ADD_CONNECT_FOUR_LOG", payload: log}))
+        .then(log => {
+            console.log("D")
+            dispatch({ type: "ADD_CONNECT_FOUR_LOG", payload: log})
+        })
     }
 }
