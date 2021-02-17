@@ -21,8 +21,7 @@ This should set up the rails server if everything runs correctly. Then clone thi
 
 To Do List:
 
-- [ ] Refactor game logic -> put somewhere else besides in component
-- [ ] User sign in
+- [ ] Refactor game => isolate game logic
 - [ ] Add a create deck page
 - [ ] Add an edit deck page (merge with create deck page?)
 - [ ] Add user sign in
@@ -31,7 +30,7 @@ To Do List:
 
 Game Refactor:
 - [ ] link left cards, right cards, and game board
-- [ ] create timer
+- [x] create timer
 - [ ] create ConnectFour class with constructor to make a game object
 - [ ] create human player class
 - [ ] create computer player class
