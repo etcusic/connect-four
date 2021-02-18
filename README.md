@@ -1,4 +1,4 @@
-Video breakdown:
+Video demo: https://www.youtube.com/watch?v=l9nDOq3InYY 
 
 Blog entry: https://etcusic.github.io/setting_up_redux 
 
