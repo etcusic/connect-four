@@ -1,8 +1,6 @@
-Video demo: https://www.youtube.com/watch?v=l9nDOq3InYY 
-
-Blog entry: https://etcusic.github.io/setting_up_redux 
-
-Rails API repo: https://github.com/etcusic/memory-game-api
+- video demo: https://www.youtube.com/watch?v=l9nDOq3InYY 
+- blog - setting up Redux: https://etcusic.github.io/setting_up_redux 
+- Rails API repo: https://github.com/etcusic/memory-game-api
 
 Instructions:
 
@@ -19,21 +17,29 @@ This should set up the rails server if everything runs correctly. Then clone thi
 - npm install 
 - npm start 
 
-To Do List:
-
-- [ ] Refactor game => isolate game logic
+Checklist:
+- [x] Set up BrowserRouter in NavBar with Home, Game, and Scores pages
+- [x] Create home page display
+- [x] Create table display for user's scores
+- [x] Hook up Redux to manage global state 
+- [x] set up combineReducer to manage reducers => user, decks, gameLogs 
+- [x] Connect fetch requests to Rails API
 - [ ] Add a create deck page
 - [ ] Add an edit deck page (merge with create deck page?)
 - [ ] Add user sign in
-- [ ] Refactor CSS layout - implement BEM structure
+- [ ] Refactor HTML & CSS layout using 
+- [ ] Incorporate React Hooks
 
-
-Game Refactor:
-- [ ] link left cards, right cards, and game board
+Game Checklist:
+- [x] create LeftCards and RightCards for matching
+- [x] create grid layout for connect four game 
+- [x] create tokens that take color as a prop to indicate player
+- [x] develop logic for checking valid moves and whether game is over
 - [x] create timer
-- [ ] create ConnectFour class with constructor to make a game object
-- [ ] create human player class
-- [ ] create computer player class
+- [ ] isolate game logic
+- [ ] human player
+- [ ] computer player
+- [ ] add difficulty logic and setting
 
 
 Stretch Goals:
